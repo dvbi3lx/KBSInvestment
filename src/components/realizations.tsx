@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
-import { X, ChevronLeft, ChevronRight, Building2, MapPin, Calendar, Users, Award, Play, Pause } from "lucide-react";
+import { X, ChevronLeft, ChevronRight, Building2, MapPin, Calendar, Users, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -121,7 +121,6 @@ export function Realizations() {
     const [selectedRealization, setSelectedRealization] = useState<typeof realizations[0] | null>(null);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [currentSlide, setCurrentSlide] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(false);
     const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
 
     // Auto-play functionality - disabled
@@ -265,10 +264,6 @@ export function Realizations() {
     const prevSlide = () => {
         setSlideDirection('left');
         setCurrentSlide((prev) => (prev - 1 + realizations.length) % realizations.length);
-    };
-
-    const toggleAutoPlay = () => {
-        setIsAutoPlaying(!isAutoPlaying);
     };
 
     return (

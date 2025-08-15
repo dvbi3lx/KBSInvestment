@@ -309,7 +309,6 @@ export function ContactSection() {
                                         className="mt-1 border-gray-300 focus:ring-primary"
                                         checked={watchedConsent}
                                         onCheckedChange={(checked) => {
-                                            // @ts-ignore - react-hook-form expects this
                                             register('consent').onChange({ target: { value: checked } });
                                         }}
                                     />

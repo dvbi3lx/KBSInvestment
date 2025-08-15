@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { ChevronDown, ChevronUp, Phone, Mail } from "lucide-react";
+import { ChevronDown, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const faqData = [

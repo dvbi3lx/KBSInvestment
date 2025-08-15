@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Star, Quote, ArrowRight, Users, Award, Zap, Shield, Briefcase } from "lucide-react";
+import { Star, Quote, ArrowRight, Users, Award, Zap } from "lucide-react";
 
 const testimonials = [
     {
@@ -133,7 +133,7 @@ export function Testimonials() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="text-gray-600 leading-relaxed italic">
-                                        "{testimonial.content}"
+                                        &ldquo;{testimonial.content}&rdquo;
                                     </p>
                                 </CardContent>
                             </Card>

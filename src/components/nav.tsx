@@ -1,11 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, Search, User, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
     NavigationMenu,
     NavigationMenuItem,
@@ -29,7 +28,6 @@ const scrollToSection = (id: string) => {
 };
 
 export function NavBar() {
-    const pathname = usePathname();
     return (
         <header className="fixed top-6 z-50 w-full bg-transparent">
             <div className="mx-auto w-full px-4 lg:px-6">
