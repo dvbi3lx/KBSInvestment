@@ -15,9 +15,8 @@ export function Hero() {
                 transition={{ duration: 1.5 }}
             >
                 <motion.div
-                    className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary/20 to-blue-400/20 rounded-full blur-3xl"
+                    className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-primary/15 to-blue-400/15 rounded-full blur-3xl"
                     animate={{
-                        scale: [1, 1.1, 1],
                         opacity: [0.3, 0.6, 0.3]
                     }}
                     transition={{
@@ -27,9 +26,8 @@ export function Hero() {
                     }}
                 />
                 <motion.div
-                    className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-blue-400/20 to-primary/20 rounded-full blur-3xl"
+                    className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-3xl"
                     animate={{
-                        scale: [1, 1.2, 1],
                         opacity: [0.2, 0.5, 0.2]
                     }}
                     transition={{

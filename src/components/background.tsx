@@ -9,9 +9,9 @@ export function Background() {
             <div className="absolute inset-0 [background:linear-gradient(to_bottom,transparent,rgba(0,0,0,0.04))]" />
             <motion.div
                 aria-hidden
-                className="absolute left-1/2 top-1/2 h-[60vmax] w-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
+                className="absolute left-1/2 top-1/2 h-[50vmax] w-[50vmax] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"
                 style={{ background: "radial-gradient(closest-side,#0a3b6d22,transparent)" }}
-                animate={{ scale: [1, 1.08, 1], rotate: [0, 20, 0] }}
+                animate={{ rotate: [0, 20, 0] }}
                 transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
             />
         </div>

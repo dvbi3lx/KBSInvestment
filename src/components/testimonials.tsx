@@ -153,11 +153,10 @@ export function Testimonials() {
                         {/* Glassy Background */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue-500/10 to-primary/5 backdrop-blur-sm border border-white/20 rounded-3xl"></div>
 
-                        {/* Animated Background Elements */}
+                        {/* Animated Background Elements - Fixed positioning */}
                         <motion.div
-                            className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-primary/20 to-blue-400/20 rounded-full blur-3xl"
+                            className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-primary/15 to-blue-400/15 rounded-full blur-2xl"
                             animate={{
-                                scale: [1, 1.2, 1],
                                 opacity: [0.3, 0.6, 0.3]
                             }}
                             transition={{
@@ -167,9 +166,8 @@ export function Testimonials() {
                             }}
                         />
                         <motion.div
-                            className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-tr from-blue-400/20 to-primary/20 rounded-full blur-3xl"
+                            className="absolute bottom-4 left-4 w-32 h-32 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-2xl"
                             animate={{
-                                scale: [1, 1.3, 1],
                                 opacity: [0.2, 0.5, 0.2]
                             }}
                             transition={{

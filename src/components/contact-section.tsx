@@ -81,17 +81,27 @@ export function ContactSection() {
         setSubmitStatus('idle');
 
         try {
-            // Symulacja wysyłania formularza
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Przygotowanie danych do wysłania
+            const formData = {
+                name: `${data.firstName} ${data.lastName}`,
+                email: data.email,
+                phone: data.phone || '',
+                service: data.service,
+                message: data.message
+            };
 
-            console.log('Form data:', data);
+            // Wysyłanie do API
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
+            });
 
-            // Tutaj można dodać rzeczywiste API call
-            // await fetch('/api/contact', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data)
-            // });
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Błąd wysyłania wiadomości');
+            }
 
             setSubmitStatus('success');
             reset();
@@ -149,12 +159,20 @@ export function ContactSection() {
                                 <motion.div
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3"
+                                    className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg"
                                 >
-                                    <CheckCircle className="h-5 w-5 text-green-600" />
-                                    <span className="text-green-800 font-medium">
-                                        Wiadomość została wysłana pomyślnie! Odpowiemy w ciągu 24 godzin.
-                                    </span>
+                                    <div className="flex items-start gap-3">
+                                        <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
+                                        <div>
+                                            <h4 className="text-green-800 font-semibold mb-1">
+                                                Wiadomość wysłana pomyślnie! ✅
+                                            </h4>
+                                            <p className="text-green-700 text-sm">
+                                                Dziękujemy za kontakt! Otrzymaliśmy Twoje zapytanie i odpowiemy w ciągu 24-48 godzin.
+                                                Sprawdź swoją skrzynkę email - wysłaliśmy mail potwierdzający.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             )}
 
@@ -162,12 +180,20 @@ export function ContactSection() {
                                 <motion.div
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
-                                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3"
+                                    className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg"
                                 >
-                                    <AlertCircle className="h-5 w-5 text-red-600" />
-                                    <span className="text-red-800 font-medium">
-                                        Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie.
-                                    </span>
+                                    <div className="flex items-start gap-3">
+                                        <AlertCircle className="h-5 w-5 text-red-600 mt-0.5 flex-shrink-0" />
+                                        <div>
+                                            <h4 className="text-red-800 font-semibold mb-1">
+                                                Błąd wysyłania wiadomości ❌
+                                            </h4>
+                                            <p className="text-red-700 text-sm">
+                                                Wystąpił problem podczas wysyłania wiadomości. Sprawdź połączenie internetowe i spróbuj ponownie.
+                                                Jeśli problem się powtarza, skontaktuj się z nami bezpośrednio.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </motion.div>
                             )}
 
@@ -331,15 +357,23 @@ export function ContactSection() {
                                     className="w-full bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 h-12 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
-                                        <>
-                                            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                                            Wysyłanie...
-                                        </>
+                                        <motion.div
+                                            className="flex items-center gap-2"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                        >
+                                            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                                            Wysyłanie wiadomości...
+                                        </motion.div>
                                     ) : (
-                                        <>
-                                            <Send className="mr-2 h-5 w-5" />
+                                        <motion.div
+                                            className="flex items-center gap-2"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                        >
+                                            <Send className="w-5 h-5" />
                                             Wyślij wiadomość
-                                        </>
+                                        </motion.div>
                                     )}
                                 </Button>
                             </form>

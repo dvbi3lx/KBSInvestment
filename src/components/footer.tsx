@@ -150,10 +150,10 @@ export function Footer() {
                             >Dominik Dubiel</a></div>
                         </div>
                         <div className="flex items-center gap-6 text-sm text-gray-400">
-                            <a href="#" className="hover:text-primary transition-colors duration-300">
+                            <a href="/polityka-prywatnosci" className="hover:text-primary transition-colors duration-300">
                                 Polityka prywatności
                             </a>
-                            <a href="#" className="hover:text-primary transition-colors duration-300">
+                            <a href="/regulamin" className="hover:text-primary transition-colors duration-300">
                                 Regulamin
                             </a>
                         </div>
@@ -163,7 +163,6 @@ export function Footer() {
 
             {/* Scroll to Top Button */}
             <motion.button
-                id="scroll-to-top"
                 onClick={scrollToTop}
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}

@@ -6,10 +6,11 @@ import { FAQ } from "@/components/faq";
 import { Realizations } from "@/components/realizations";
 import { ContactSection } from "@/components/contact-section";
 import { Footer } from "@/components/footer";
+import { CookieConsent } from "@/components/cookie-consent";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen overflow-x-hidden">
       <Hero />
       <Services />
       <WhyChooseUs />
@@ -18,6 +19,7 @@ export default function Home() {
       <FAQ />
       <ContactSection />
       <Footer />
+      <CookieConsent />
     </main>
   );
 }
