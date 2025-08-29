@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -25,6 +26,10 @@ const scrollToSection = (id: string) => {
 export function NavBar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
+
+    // Ukryj nawigację na podstronach polityki prywatności i regulaminu
+    const shouldHideNav = pathname === "/polityka-prywatnosci" || pathname === "/regulamin";
 
     useEffect(() => {
         const handleScroll = () => {
@@ -37,14 +42,58 @@ export function NavBar() {
     // Disable scroll when menu is open
     useEffect(() => {
         if (isOpen) {
+            // Blokuj przewijanie na wszystkich urządzeniach
             document.body.style.overflow = 'hidden';
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+            document.body.style.top = `-${window.scrollY}px`;
+
+            // Dodaj klasę CSS dla dodatkowych stylów
+            document.body.classList.add('menu-open');
+
+            // Blokuj przewijanie na iOS
+            document.documentElement.style.position = 'fixed';
+            document.documentElement.style.width = '100%';
+            document.documentElement.style.top = `-${window.scrollY}px`;
         } else {
-            document.body.style.overflow = 'unset';
+            // Przywróć normalne przewijanie
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.top = '';
+            document.body.style.overflow = '';
+
+            // Usuń klasę CSS
+            document.body.classList.remove('menu-open');
+
+            // Przywróć pozycję na iOS
+            document.documentElement.style.position = '';
+            document.documentElement.style.width = '';
+            document.documentElement.style.top = '';
+
+            // Przywróć pozycję przewijania
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         }
+
         return () => {
-            document.body.style.overflow = 'unset';
+            // Cleanup - przywróć normalne przewijanie
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.top = '';
+            document.body.style.overflow = '';
+            document.body.classList.remove('menu-open');
+            document.documentElement.style.position = '';
+            document.documentElement.style.width = '';
+            document.documentElement.style.top = '';
         };
     }, [isOpen]);
+
+    // Ukryj nawigację na podstronach polityki prywatności i regulaminu
+    if (shouldHideNav) {
+        return null;
+    }
 
     return (
         <>
@@ -56,13 +105,13 @@ export function NavBar() {
                         animate={{ y: 0, opacity: 1 }}
                         exit={{ y: -100, opacity: 0 }}
                         transition={{ duration: 0.4, ease: "easeOut" }}
-                        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "py-2" : "py-4"
+                        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "py-1 sm:py-2" : "py-2 sm:py-3 md:py-4"
                             }`}
                     >
-                        <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" style={{ maxWidth: 'min(100vw - 32px, 1280px)' }}>
+                        <div className="mx-auto w-full max-w-7xl px-3 sm:px-4 lg:px-6" style={{ maxWidth: 'min(100vw - 24px, 1280px)' }}>
                             <motion.nav
                                 layout
-                                className={`relative overflow-hidden rounded-2xl border border-white/20 backdrop-blur-md shadow-lg transition-all duration-300 ${isScrolled
+                                className={`relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/20 backdrop-blur-md shadow-lg transition-all duration-300 ${isScrolled
                                     ? "bg-white/95 shadow-xl"
                                     : "bg-white/80 shadow-lg"
                                     }`}
@@ -70,7 +119,7 @@ export function NavBar() {
                                 {/* Background Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-blue-600/5 opacity-50" />
 
-                                <div className="relative flex h-16 items-center justify-between px-6 lg:px-8">
+                                <div className="relative flex h-12 sm:h-14 md:h-16 items-center justify-between px-3 sm:px-4 md:px-6 lg:px-8">
                                     {/* Logo */}
                                     <motion.div
                                         whileHover={{ scale: 1.05 }}
@@ -78,7 +127,7 @@ export function NavBar() {
                                         transition={{ duration: 0.2 }}
                                     >
                                         <Link href="/" className="flex items-center">
-                                            <span className="text-xl font-bold text-gray-900">
+                                            <span className="text-base sm:text-lg md:text-xl font-bold text-gray-900">
                                                 KBS Investment
                                             </span>
                                         </Link>
@@ -108,7 +157,7 @@ export function NavBar() {
                                     </nav>
 
                                     {/* CTA Button & Mobile Menu */}
-                                    <div className="flex items-center space-x-4">
+                                    <div className="flex items-center space-x-2 sm:space-x-3 md:space-x-4">
                                         {/* CTA Button - Hidden on mobile */}
                                         <motion.div
                                             initial={{ opacity: 0, x: 20 }}
@@ -118,7 +167,7 @@ export function NavBar() {
                                         >
                                             <Button
                                                 onClick={() => scrollToSection('kontakt')}
-                                                className="h-10 px-6 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-xl text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                                className="h-8 sm:h-10 px-4 sm:px-6 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
                                             >
                                                 Bezpłatna wycena
                                                 <motion.div
@@ -126,7 +175,7 @@ export function NavBar() {
                                                     whileHover={{ x: 2, y: -2 }}
                                                     transition={{ duration: 0.2 }}
                                                 >
-                                                    <ArrowUpRight className="h-4 w-4" />
+                                                    <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4" />
                                                 </motion.div>
                                             </Button>
                                         </motion.div>
@@ -137,9 +186,9 @@ export function NavBar() {
                                                 whileHover={{ scale: 1.05 }}
                                                 whileTap={{ scale: 0.95 }}
                                                 onClick={() => setIsOpen(true)}
-                                                className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 text-gray-700 hover:bg-white hover:text-primary border border-gray-200/50 shadow-md transition-all duration-200"
+                                                className="inline-flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-white/80 text-gray-700 hover:bg-white hover:text-primary border border-gray-200/50 shadow-md transition-all duration-200"
                                             >
-                                                <Menu className="h-5 w-5" />
+                                                <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
                                             </motion.button>
                                         </div>
                                     </div>
@@ -171,7 +220,7 @@ export function NavBar() {
                             {/* Animated Background Elements */}
                             <div className="absolute inset-0 overflow-hidden">
                                 <motion.div
-                                    className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
+                                    className="absolute top-1/4 left-1/4 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 bg-primary/5 rounded-full blur-2xl"
                                     animate={{
                                         scale: [1, 1.2, 1],
                                         opacity: [0.3, 0.6, 0.3]
@@ -183,7 +232,7 @@ export function NavBar() {
                                     }}
                                 />
                                 <motion.div
-                                    className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"
+                                    className="absolute bottom-1/4 right-1/4 w-24 h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 bg-blue-500/5 rounded-full blur-2xl"
                                     animate={{
                                         scale: [1, 1.3, 1],
                                         opacity: [0.2, 0.5, 0.2]
@@ -206,24 +255,24 @@ export function NavBar() {
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: -50, opacity: 0 }}
                                 transition={{ duration: 0.3, delay: 0.1 }}
-                                className="flex items-center justify-between p-6"
+                                className="flex items-center justify-between p-3 sm:p-4 md:p-6"
                             >
-                                <span className="text-xl font-bold text-gray-900 drop-shadow-md">
+                                <span className="text-base sm:text-lg md:text-xl font-bold text-gray-900 drop-shadow-md">
                                     KBS Investment
                                 </span>
                                 <motion.button
                                     whileHover={{ scale: 1.1, rotate: 90 }}
                                     whileTap={{ scale: 0.9 }}
                                     onClick={() => setIsOpen(false)}
-                                    className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 text-gray-700 hover:bg-white hover:text-primary border border-gray-200/50 shadow-md transition-all duration-200"
+                                    className="inline-flex h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-white/80 text-gray-700 hover:bg-white hover:text-primary border border-gray-200/50 shadow-md transition-all duration-200"
                                 >
-                                    <X className="h-5 w-5" />
+                                    <X className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                                 </motion.button>
                             </motion.div>
 
                             {/* Navigation Links */}
-                            <div className="flex-1 flex flex-col justify-center px-6">
-                                <nav className="space-y-2">
+                            <div className="flex-1 flex flex-col justify-center px-3 sm:px-4 md:px-6">
+                                <nav className="space-y-1 sm:space-y-2">
                                     {links.map((link, index) => (
                                         <motion.button
                                             key={link.id}
@@ -241,7 +290,7 @@ export function NavBar() {
                                             }}
                                             whileHover={{ scale: 1.02, x: 10 }}
                                             whileTap={{ scale: 0.98 }}
-                                            className="flex w-full items-center justify-between rounded-2xl px-6 py-6 text-left text-2xl font-semibold text-gray-700 hover:text-primary hover:bg-white/20 drop-shadow-md transition-all duration-200 group"
+                                            className="flex w-full items-center justify-between rounded-lg sm:rounded-xl md:rounded-2xl px-3 py-3 sm:px-4 sm:py-4 md:px-6 md:py-6 text-left text-base sm:text-lg md:text-xl font-semibold text-gray-700 hover:text-primary hover:bg-white/20 drop-shadow-md transition-all duration-200 group"
                                         >
                                             <span>{link.label}</span>
                                             <motion.div
@@ -249,7 +298,7 @@ export function NavBar() {
                                                 whileHover={{ x: 4 }}
                                                 transition={{ duration: 0.2 }}
                                             >
-                                                <ArrowUpRight className="h-6 w-6 text-primary" />
+                                                <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-primary" />
                                             </motion.div>
                                         </motion.button>
                                     ))}
@@ -262,24 +311,24 @@ export function NavBar() {
                                 animate={{ y: 0, opacity: 1 }}
                                 exit={{ y: 50, opacity: 0 }}
                                 transition={{ duration: 0.3, delay: 0.5 }}
-                                className="p-6 border-t border-white/20"
+                                className="p-3 sm:p-4 md:p-6 border-t border-white/20"
                             >
                                 <Button
                                     onClick={() => {
                                         scrollToSection('kontakt');
                                         setIsOpen(false);
                                     }}
-                                    className="w-full h-14 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-2xl text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+                                    className="w-full h-10 sm:h-12 md:h-14 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-lg sm:rounded-xl md:rounded-2xl text-sm sm:text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
                                 >
                                     Bezpłatna wycena
-                                    <ArrowUpRight className="ml-2 h-5 w-5" />
+                                    <ArrowUpRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                                 </Button>
 
                                 <motion.p
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.6, duration: 0.3 }}
-                                    className="mt-4 text-center text-sm text-gray-600 drop-shadow-sm"
+                                    className="mt-2 sm:mt-3 md:mt-4 text-center text-xs sm:text-sm text-gray-600 drop-shadow-sm"
                                 >
                                     Skontaktuj się z nami już dziś
                                 </motion.p>

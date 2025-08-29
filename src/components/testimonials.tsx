@@ -57,49 +57,47 @@ const testimonials = [
 
 export function Testimonials() {
     return (
-        <section id="opinie" className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
+        <section id="opinie" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+                <div className="absolute top-20 left-4 sm:left-10 w-48 h-48 sm:w-72 sm:h-72 bg-primary/5 rounded-full blur-2xl sm:blur-3xl"></div>
+                <div className="absolute bottom-20 right-4 sm:right-10 w-56 h-56 sm:w-96 sm:h-96 bg-blue-500/5 rounded-full blur-2xl sm:blur-3xl"></div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-4 lg:px-6 relative z-10">
+            <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6 relative z-10">
                 {/* Header Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-20"
+                    className="text-center mb-16 sm:mb-20"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6"
+                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6"
                     >
-                        <Star className="h-4 w-4 fill-primary" />
+                        <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-primary" />
                         Średnia ocena: 5.0/5.0
                     </motion.div>
 
-                    <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                         Zaufali nam{" "}
                         <span className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 bg-clip-text text-transparent">
                             najlepsi
                         </span>
                     </h2>
-                    <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
                         Dołącz do grona zadowolonych klientów, którzy wybrali KBS Investment jako swojego
                         zaufanego partnera w realizacji projektów instalacyjnych.
                     </p>
                 </motion.div>
 
-
-
                 {/* Testimonials Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                     {testimonials.map((testimonial, index) => (
                         <motion.div
                             key={testimonial.name}
@@ -110,29 +108,29 @@ export function Testimonials() {
                             whileHover={{ y: -8, scale: 1.02 }}
                         >
                             <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50">
-                                <CardHeader className="pb-4">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-12 h-12 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-lg">
+                                <CardHeader className="pb-3 sm:pb-4">
+                                    <div className="flex items-center justify-between mb-3 sm:mb-4">
+                                        <div className="flex items-center gap-2 sm:gap-3">
+                                            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-base sm:text-lg">
                                                 {testimonial.avatar}
                                             </div>
                                             <div>
-                                                <h3 className="font-semibold text-gray-900">{testimonial.name}</h3>
-                                                <p className="text-sm text-gray-600">{testimonial.position}</p>
-                                                <p className="text-sm text-primary font-medium">{testimonial.company}</p>
+                                                <h3 className="font-semibold text-gray-900 text-sm sm:text-base">{testimonial.name}</h3>
+                                                <p className="text-xs sm:text-sm text-gray-600">{testimonial.position}</p>
+                                                <p className="text-xs sm:text-sm text-primary font-medium">{testimonial.company}</p>
                                             </div>
 
                                         </div>
-                                        <Quote className="h-8 w-8 text-primary/30" />
+                                        <Quote className="h-6 w-6 sm:h-8 sm:w-8 text-primary/30" />
                                     </div>
                                     <div className="flex items-center gap-1">
                                         {[...Array(testimonial.rating)].map((_, i) => (
-                                            <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                                            <Star key={i} className="h-3 w-3 sm:h-4 sm:w-4 fill-yellow-400 text-yellow-400" />
                                         ))}
                                     </div>
                                 </CardHeader>
-                                <CardContent>
-                                    <p className="text-gray-600 leading-relaxed italic">
+                                <CardContent className="px-4 sm:px-6">
+                                    <p className="text-sm sm:text-base text-gray-600 leading-relaxed italic">
                                         &ldquo;{testimonial.content}&rdquo;
                                     </p>
                                 </CardContent>
@@ -147,15 +145,15 @@ export function Testimonials() {
                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-                    className="text-center mt-20"
+                    className="text-center mt-16 sm:mt-20"
                 >
-                    <div className="relative overflow-hidden rounded-3xl p-12 lg:p-16">
+                    <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16">
                         {/* Glassy Background */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue-500/10 to-primary/5 backdrop-blur-sm border border-white/20 rounded-3xl"></div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue-500/10 to-primary/5 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl"></div>
 
                         {/* Animated Background Elements - Fixed positioning */}
                         <motion.div
-                            className="absolute top-4 right-4 w-32 h-32 bg-gradient-to-br from-primary/15 to-blue-400/15 rounded-full blur-2xl"
+                            className="absolute top-4 right-4 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary/15 to-blue-400/15 rounded-full blur-2xl"
                             animate={{
                                 opacity: [0.3, 0.6, 0.3]
                             }}
@@ -166,7 +164,7 @@ export function Testimonials() {
                             }}
                         />
                         <motion.div
-                            className="absolute bottom-4 left-4 w-32 h-32 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-2xl"
+                            className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-2xl"
                             animate={{
                                 opacity: [0.2, 0.5, 0.2]
                             }}
@@ -186,28 +184,28 @@ export function Testimonials() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.6 }}
-                                className="flex justify-center items-center gap-6 mb-8"
+                                className="flex justify-center items-center gap-4 sm:gap-6 mb-6 sm:mb-8"
                             >
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: 5 }}
                                     transition={{ duration: 0.3 }}
-                                    className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
+                                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
                                 >
-                                    <Users className="h-8 w-8 text-white" />
+                                    <Users className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                                 </motion.div>
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: -5 }}
                                     transition={{ duration: 0.3, delay: 0.1 }}
-                                    className="w-16 h-16 bg-gradient-to-br from-blue-500 to-primary rounded-2xl flex items-center justify-center shadow-lg"
+                                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-primary rounded-2xl flex items-center justify-center shadow-lg"
                                 >
-                                    <Award className="h-8 w-8 text-white" />
+                                    <Award className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                                 </motion.div>
                                 <motion.div
                                     whileHover={{ scale: 1.1, rotate: 5 }}
                                     transition={{ duration: 0.3, delay: 0.2 }}
-                                    className="w-16 h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
+                                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
                                 >
-                                    <Zap className="h-8 w-8 text-white" />
+                                    <Zap className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                                 </motion.div>
                             </motion.div>
 
@@ -217,7 +215,7 @@ export function Testimonials() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 0.8 }}
-                                className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6"
+                                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6"
                             >
                                 Dołącz do grona{" "}
                                 <span className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 bg-clip-text text-transparent">
@@ -230,7 +228,7 @@ export function Testimonials() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 1.0 }}
-                                className="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed"
+                                className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2 sm:px-0"
                             >
                                 Skontaktuj się z nami i rozpocznij współpracę, która przyniesie Ci same korzyści
                             </motion.p>
@@ -241,23 +239,24 @@ export function Testimonials() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: 1.2 }}
-                                className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+                                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
                             >
                                 <motion.div
                                     whileHover={{ scale: 1.05, y: -3 }}
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ duration: 0.2 }}
+                                    className="w-full sm:w-auto"
                                 >
                                     <button
                                         onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
-                                        className="bg-gradient-to-r from-primary to-blue-600 text-white px-10 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-3 group"
+                                        className="w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-2 sm:gap-3 group"
                                     >
                                         Skontaktuj się
                                         <motion.div
                                             animate={{ x: [0, 3, 0] }}
                                             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
                                         >
-                                            <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                                            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
                                         </motion.div>
                                     </button>
                                 </motion.div>
@@ -266,8 +265,9 @@ export function Testimonials() {
                                     whileHover={{ scale: 1.05, y: -3 }}
                                     whileTap={{ scale: 0.95 }}
                                     transition={{ duration: 0.2 }}
+                                    className="w-full sm:w-auto"
                                 >
-                                    <button className="bg-white/80 backdrop-blur-sm text-gray-800 px-10 py-4 rounded-2xl font-semibold text-lg border-2 border-primary/20 hover:border-primary/40 shadow-lg hover:shadow-xl transition-all duration-300">
+                                    <button className="w-full sm:w-auto bg-white/80 backdrop-blur-sm text-gray-800 px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg border-2 border-primary/20 hover:border-primary/40 shadow-lg hover:shadow-xl transition-all duration-300">
                                         Zobacz więcej opinii
                                     </button>
                                 </motion.div>

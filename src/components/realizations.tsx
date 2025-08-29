@@ -130,86 +130,7 @@ export function Realizations() {
         return () => { };
     }, []);
 
-    // Block scroll when modal is open
-    useEffect(() => {
-        if (selectedRealization) {
-            document.body.style.overflow = 'hidden';
-            document.body.classList.add('modal-open');
 
-            // Inject CSS to hide scroll-to-top button
-            const style = document.createElement('style');
-            style.id = 'modal-scroll-hide';
-            style.textContent = `
-                .modal-open [class*="scroll"],
-                .modal-open [class*="Scroll"],
-                .modal-open [id*="scroll"],
-                .modal-open [id*="Scroll"],
-                .modal-open [data-scroll],
-                .modal-open button[onclick*="scroll"],
-                .modal-open a[onclick*="scroll"],
-                .modal-open [onclick*="scroll"] {
-                    display: none !important;
-                    visibility: hidden !important;
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                }
-            `;
-            document.head.appendChild(style);
-
-            // Hide scroll-to-top button with multiple approaches
-            const scrollButton = document.getElementById('scroll-to-top');
-            if (scrollButton) {
-                scrollButton.style.display = 'none';
-                scrollButton.style.visibility = 'hidden';
-                scrollButton.style.opacity = '0';
-                scrollButton.style.pointerEvents = 'none';
-            }
-
-            // Also try to hide by adding CSS class
-            document.documentElement.classList.add('modal-open');
-        } else {
-            document.body.style.overflow = 'unset';
-            document.body.classList.remove('modal-open');
-
-            // Remove injected CSS
-            const injectedStyle = document.getElementById('modal-scroll-hide');
-            if (injectedStyle) {
-                injectedStyle.remove();
-            }
-
-            // Show scroll-to-top button
-            const scrollButton = document.getElementById('scroll-to-top');
-            if (scrollButton) {
-                scrollButton.style.display = 'fixed';
-                scrollButton.style.visibility = 'visible';
-                scrollButton.style.opacity = '1';
-                scrollButton.style.pointerEvents = 'auto';
-            }
-
-            // Remove CSS class
-            document.documentElement.classList.remove('modal-open');
-        }
-
-        return () => {
-            document.body.style.overflow = 'unset';
-            document.body.classList.remove('modal-open');
-            document.documentElement.classList.remove('modal-open');
-
-            // Remove injected CSS
-            const injectedStyle = document.getElementById('modal-scroll-hide');
-            if (injectedStyle) {
-                injectedStyle.remove();
-            }
-
-            const scrollButton = document.getElementById('scroll-to-top');
-            if (scrollButton) {
-                scrollButton.style.display = 'fixed';
-                scrollButton.style.visibility = 'visible';
-                scrollButton.style.opacity = '1';
-                scrollButton.style.pointerEvents = 'auto';
-            }
-        };
-    }, [selectedRealization]);
 
     // Handle ESC key to close modal
     useEffect(() => {
@@ -277,43 +198,43 @@ export function Realizations() {
 
 
     return (
-        <section id="realizacje" className="py-24 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden">
+        <section id="realizacje" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-white via-gray-50/50 to-white relative overflow-hidden">
             {/* Top Blur Effect for Section Connection */}
-            <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm z-10"></div>
+            <div className="absolute top-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-b from-white/80 to-transparent backdrop-blur-sm z-10"></div>
 
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-32 right-10 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-32 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl"></div>
+                <div className="absolute top-32 right-4 sm:right-10 w-48 h-48 sm:w-80 sm:h-80 bg-primary/5 rounded-full blur-2xl sm:blur-3xl"></div>
+                <div className="absolute bottom-32 left-4 sm:left-10 w-40 h-40 sm:w-72 sm:h-72 bg-blue-500/5 rounded-full blur-2xl sm:blur-3xl"></div>
             </div>
 
-            <div className="mx-auto max-w-7xl px-4 lg:px-6 relative z-20">
+            <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6 relative z-20">
                 {/* Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="text-center mb-16"
+                    className="text-center mb-12 sm:mb-16"
                 >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6"
+                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6"
                     >
-                        <Building2 className="h-4 w-4" />
+                        <Building2 className="h-3 w-3 sm:h-4 sm:w-4" />
                         Nasze realizacje
                     </motion.div>
 
-                    <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                         Zobacz nasze{" "}
                         <span className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 bg-clip-text text-transparent">
                             najlepsze projekty
                         </span>
                     </h2>
-                    <p className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
                         Odkryj portfolio naszych realizacji - od małych instalacji po kompleksowe projekty
                         komercyjne i przemysłowe.
                     </p>
@@ -322,7 +243,7 @@ export function Realizations() {
                 {/* Slider Container */}
                 <div className="relative">
                     {/* Slider */}
-                    <div className="relative overflow-hidden rounded-2xl">
+                    <div className="relative overflow-hidden rounded-xl sm:rounded-2xl">
                         <AnimatePresence mode="wait" initial={false}>
                             <motion.div
                                 key={currentSlide}
@@ -353,7 +274,7 @@ export function Realizations() {
                                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                                             {/* Left Side - Image */}
                                             <motion.div
-                                                className="relative h-64 sm:h-80 lg:h-96 overflow-hidden"
+                                                className="relative h-48 sm:h-56 md:h-64 lg:h-96 overflow-hidden"
                                                 whileHover={{ scale: 1.02 }}
                                                 transition={{ duration: 0.3 }}
                                             >
@@ -367,7 +288,7 @@ export function Realizations() {
                                                 />
                                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                                                 <motion.div
-                                                    className="absolute top-3 left-3 lg:top-4 lg:left-4"
+                                                    className="absolute top-2 sm:top-3 left-2 sm:left-3 lg:top-4 lg:left-4"
                                                     initial={{ opacity: 0, y: -20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -377,7 +298,7 @@ export function Realizations() {
                                                     </span>
                                                 </motion.div>
                                                 <motion.div
-                                                    className="absolute bottom-3 right-3 lg:bottom-4 lg:right-4"
+                                                    className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 lg:bottom-4 lg:right-4"
                                                     initial={{ opacity: 0, y: 20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -390,13 +311,13 @@ export function Realizations() {
 
                                             {/* Right Side - Content */}
                                             <motion.div
-                                                className="p-4 sm:p-6 lg:p-8 xl:p-10 flex flex-col justify-center"
+                                                className="p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10 flex flex-col justify-center"
                                                 initial={{ opacity: 0, x: 50 }}
                                                 animate={{ opacity: 1, x: 0 }}
                                                 transition={{ duration: 0.8, delay: 0.2 }}
                                             >
                                                 <motion.h3
-                                                    className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 lg:mb-4 leading-tight"
+                                                    className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 sm:mb-3 lg:mb-4 leading-tight"
                                                     initial={{ opacity: 0, y: 20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -404,7 +325,7 @@ export function Realizations() {
                                                     {realizations[currentSlide].title}
                                                 </motion.h3>
                                                 <motion.p
-                                                    className="text-sm sm:text-base lg:text-lg text-gray-600 mb-4 lg:mb-6 leading-relaxed"
+                                                    className="text-sm sm:text-base md:text-lg text-gray-600 mb-3 sm:mb-4 lg:mb-6 leading-relaxed"
                                                     initial={{ opacity: 0, y: 20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -412,20 +333,20 @@ export function Realizations() {
                                                     {realizations[currentSlide].description}
                                                 </motion.p>
                                                 <motion.div
-                                                    className="grid grid-cols-2 gap-3 lg:gap-4 mb-4 lg:mb-6"
+                                                    className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4 mb-3 sm:mb-4 lg:mb-6"
                                                     initial={{ opacity: 0, y: 20 }}
                                                     animate={{ opacity: 1, y: 0 }}
                                                     transition={{ duration: 0.6, delay: 0.5 }}
                                                 >
                                                     <div className="flex items-center gap-2">
-                                                        <MapPin className="h-4 w-4 text-primary flex-shrink-0" />
+                                                        <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                                                         <div className="min-w-0">
                                                             <p className="text-xs lg:text-sm text-gray-500">Lokalizacja</p>
                                                             <p className="text-xs lg:text-sm font-medium truncate">{realizations[currentSlide].location}</p>
                                                         </div>
                                                     </div>
                                                     <div className="flex items-center gap-2">
-                                                        <Calendar className="h-4 w-4 text-primary flex-shrink-0" />
+                                                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                                                         <div className="min-w-0">
                                                             <p className="text-xs lg:text-sm text-gray-500">Rok</p>
                                                             <p className="text-xs lg:text-sm font-medium">{realizations[currentSlide].date}</p>
@@ -440,7 +361,7 @@ export function Realizations() {
                                                 >
                                                     <Button
                                                         onClick={() => openModal(realizations[currentSlide])}
-                                                        className="bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                                                        className="bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
                                                     >
                                                         Zobacz szczegóły
                                                     </Button>
@@ -464,23 +385,23 @@ export function Realizations() {
                             variant="ghost"
                             size="icon"
                             onClick={prevSlide}
-                            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-10"
+                            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-10"
                         >
-                            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+                            <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                         </Button>
                         <Button
                             variant="ghost"
                             size="icon"
                             onClick={nextSlide}
-                            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 h-10 w-10 sm:h-12 sm:w-12 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-10"
+                            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 bg-white/90 hover:bg-white text-gray-800 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-10"
                         >
-                            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+                            <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6" />
                         </Button>
                     </motion.div>
 
                     {/* Dots Navigation */}
                     <motion.div
-                        className="flex justify-center mt-6 sm:mt-8 gap-2 sm:gap-3"
+                        className="flex justify-center mt-4 sm:mt-6 md:mt-8 gap-2 sm:gap-3"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.7 }}
@@ -489,7 +410,7 @@ export function Realizations() {
                             <motion.button
                                 key={index}
                                 onClick={() => goToSlide(index)}
-                                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${index === currentSlide
+                                className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${index === currentSlide
                                     ? "bg-primary scale-125"
                                     : "bg-gray-300 hover:bg-gray-400"
                                     }`}
@@ -508,7 +429,7 @@ export function Realizations() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center p-0 sm:p-4"
                         onClick={closeModal}
                     >
                         <motion.div
@@ -522,12 +443,12 @@ export function Realizations() {
                                 stiffness: 100,
                                 damping: 20
                             }}
-                            className="bg-white rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+                            className="bg-white rounded-none sm:rounded-2xl w-full h-full sm:max-w-6xl sm:max-h-[90vh] overflow-hidden"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Modal Header */}
                             <motion.div
-                                className="flex items-center justify-between p-4 lg:p-6 border-b border-gray-200"
+                                className="flex items-center justify-between p-4 lg:p-6 border-b border-gray-200 bg-white sticky top-0 z-10"
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, delay: 0.1 }}
@@ -544,7 +465,7 @@ export function Realizations() {
                             </motion.div>
 
                             {/* Modal Content */}
-                            <div className="flex flex-col lg:flex-row h-full">
+                            <div className="flex flex-col lg:flex-row h-full overflow-y-auto">
                                 {/* Left Side - Image Gallery */}
                                 <motion.div
                                     className="lg:w-1/2 p-4 lg:p-6 flex-shrink-0"
@@ -619,7 +540,7 @@ export function Realizations() {
 
                                 {/* Right Side - Project Details */}
                                 <motion.div
-                                    className="lg:w-1/2 p-4 lg:p-6 bg-gray-50/50 flex-1 overflow-y-auto"
+                                    className="lg:w-1/2 p-4 lg:p-6 bg-gray-50/50 flex-1"
                                     initial={{ opacity: 0, x: 50 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.5, delay: 0.3 }}
