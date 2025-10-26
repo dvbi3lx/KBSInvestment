@@ -38,10 +38,14 @@ const contactFormSchema = z.object({
         .min(1, "Email jest wymagany"),
 
     phone: z.string()
-        .optional(),
+        .optional()
+        .or(z.literal('')),
 
     service: z.string()
-        .min(1, "Wybierz rodzaj usługi"),
+        .min(1, "Wybierz rodzaj usługi")
+        .refine((val) => val !== '', {
+            message: "Wybierz rodzaj usługi"
+        }),
 
     message: z.string()
         .min(1, "Wiadomość jest wymagana")
@@ -71,6 +75,7 @@ export function ContactSection() {
     });
 
     const onSubmit = async (data: ContactFormData) => {
+        console.log('Form data:', data); // Debug
         setIsSubmitting(true);
         setSubmitStatus('submitting');
 
@@ -85,7 +90,8 @@ export function ContactSection() {
                     'email': data.email,
                     'phone': data.phone || '',
                     'service': data.service,
-                    'message': data.message
+                    'message': data.message,
+                    'consent': data.consent ? 'true' : 'false'
                 })
             });
 
