@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
     Phone,
     Mail,
@@ -46,8 +46,7 @@ export function ContactSection() {
         register,
         handleSubmit,
         formState: { errors },
-        reset,
-        watch
+        reset
     } = useForm<ContactFormData>({
         resolver: zodResolver(contactFormSchema),
         mode: "onChange",
@@ -56,27 +55,12 @@ export function ContactSection() {
             lastName: '',
             email: '',
             phone: '',
-            service: 'gas',
+            service: '',
             message: '',
             consent: false
         }
     });
 
-    // Dynamiczna walidacja
-    const [isFormValid, setIsFormValid] = useState(false);
-    const watchedValues = watch();
-
-    useEffect(() => {
-        const isValid = 
-            watchedValues.firstName?.length > 0 &&
-            watchedValues.lastName?.length > 0 &&
-            watchedValues.email?.includes('@') &&
-            watchedValues.service?.length > 0 &&
-            watchedValues.message?.length > 0 &&
-            watchedValues.consent === true;
-        
-        setIsFormValid(isValid);
-    }, [watchedValues]);
 
     const onSubmit = async (data: ContactFormData) => {
         console.log('Form data:', data);
@@ -278,6 +262,7 @@ export function ContactSection() {
                                             }`}
                                         {...register('service')}
                                     >
+                                        <option value="">Wybierz rodzaj usługi</option>
                                         <option value="gas">Instalacje gazowe</option>
                                         <option value="heating">Instalacje grzewcze</option>
                                         <option value="water">Woda i kanalizacja</option>
@@ -338,7 +323,7 @@ export function ContactSection() {
 
                                 <Button
                                     type="submit"
-                                    disabled={isSubmitting || !isFormValid}
+                                    disabled={isSubmitting}
                                     className="w-full bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 h-10 sm:h-12 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
