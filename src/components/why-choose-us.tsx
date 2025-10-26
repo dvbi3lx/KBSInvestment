@@ -45,7 +45,7 @@ const reasons = [
 export function WhyChooseUs() {
     return (
         <section id="dlaczego-my" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
-            <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <GSAPCard className="text-center mb-12 sm:mb-16">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">

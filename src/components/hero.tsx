@@ -16,7 +16,7 @@ export function Hero() {
                 <div className="absolute bottom-0 left-0 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-2xl sm:blur-3xl animate-pulse" />
             </div>
 
-            <div className="relative z-10 mx-auto max-w-7xl px-3 sm:px-4 lg:px-6 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-8 pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20">
                 <div className="text-center mb-8 sm:mb-12 md:mb-16">
                     {/* Logo */}
                     <GSAPCard className="flex justify-center mb-6 sm:mb-8">
@@ -68,10 +68,10 @@ export function Hero() {
 
                 {/* Feature Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto px-2 sm:px-0 mb-16 sm:mb-20">
-                    <GSAPCard delay={0.1} className="group">
-                        <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <GSAPCard delay={0.1} className="group h-full">
+                        <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 h-full flex">
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="relative p-4 sm:p-6 md:p-8 text-center">
+                            <div className="relative p-4 sm:p-6 md:p-8 text-center w-full">
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Shield className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                                 </div>
@@ -81,10 +81,10 @@ export function Hero() {
                         </div>
                     </GSAPCard>
 
-                    <GSAPCard delay={0.15} className="group">
-                        <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <GSAPCard delay={0.15} className="group h-full">
+                        <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 h-full flex">
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="relative p-4 sm:p-6 md:p-8 text-center">
+                            <div className="relative p-4 sm:p-6 md:p-8 text-center w-full">
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Clock className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                                 </div>
@@ -94,10 +94,10 @@ export function Hero() {
                         </div>
                     </GSAPCard>
 
-                    <GSAPCard delay={0.2} className="group sm:col-span-2 md:col-span-1">
-                        <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <GSAPCard delay={0.2} className="group sm:col-span-2 md:col-span-1 h-full">
+                        <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-md border border-white/20 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 h-full flex">
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                            <div className="relative p-4 sm:p-6 md:p-8 text-center">
+                            <div className="relative p-4 sm:p-6 md:p-8 text-center w-full">
                                 <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300">
                                     <Users className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
                                 </div>

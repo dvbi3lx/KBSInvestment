@@ -64,11 +64,11 @@ export function NavBar() {
             {/* Main Navbar */}
             {!isOpen && (
                 <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? "py-1 sm:py-2" : "py-2 sm:py-3 md:py-4"}`}>
-                    <div className="mx-auto w-full max-w-7xl px-3 sm:px-4 lg:px-6">
+                    <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 md:px-8">
                         <nav className={`relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/20 backdrop-blur-md shadow-lg transition-all duration-300 ${isScrolled ? "bg-white/95 shadow-xl" : "bg-white/80 shadow-lg"}`}>
                             <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-blue-600/5 opacity-50" />
 
-                            <div className="relative flex h-12 sm:h-14 md:h-16 items-center justify-between px-3 sm:px-4 md:px-6 lg:px-8">
+                            <div className="relative flex h-12 sm:h-14 md:h-16 items-center justify-between px-4 sm:px-6 md:px-6 lg:px-8">
                                 {/* Logo */}
                                 <Link href="/" className="flex items-center hover:scale-105 transition-transform duration-200">
                                     <span className="text-base sm:text-lg md:text-xl font-bold text-gray-900">

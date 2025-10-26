@@ -36,7 +36,7 @@ export function Footer() {
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.1)_1px,transparent_0)] bg-[length:20px_20px]"></div>
             </div>
 
-            <div className="relative z-10 mx-auto max-w-7xl px-3 sm:px-4 lg:px-6 py-8 sm:py-10 md:py-12">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 md:px-8 py-8 sm:py-10 md:py-12">
                 {/* Main Footer Content */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-6 sm:mb-8">
                     {/* Company Info */}

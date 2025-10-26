@@ -23,34 +23,28 @@ import {
     AlertCircle
 } from "lucide-react";
 
-// Schema walidacji
+// Schema walidacji - uproszczona dla Netlify Forms
 const contactFormSchema = z.object({
     firstName: z.string()
-        .min(2, "Imię musi mieć co najmniej 2 znaki")
-        .max(50, "Imię nie może przekraczać 50 znaków")
-        .regex(/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s]+$/, "Imię może zawierać tylko litery"),
+        .min(1, "Imię jest wymagane")
+        .max(50, "Imię nie może przekraczać 50 znaków"),
 
     lastName: z.string()
-        .min(2, "Nazwisko musi mieć co najmniej 2 znaki")
-        .max(50, "Nazwisko nie może przekraczać 50 znaków")
-        .regex(/^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s-]+$/, "Nazwisko może zawierać tylko litery, spacje i myślniki"),
+        .min(1, "Nazwisko jest wymagane")
+        .max(50, "Nazwisko nie może przekraczać 50 znaków"),
 
     email: z.string()
         .email("Podaj poprawny adres email")
-        .min(5, "Email musi mieć co najmniej 5 znaków")
-        .max(100, "Email nie może przekraczać 100 znaków"),
+        .min(1, "Email jest wymagany"),
 
     phone: z.string()
-        .optional()
-        .refine((val) => !val || /^[\+]?[0-9\s\-\(\)]{9,15}$/.test(val), {
-            message: "Podaj poprawny numer telefonu"
-        }),
+        .optional(),
 
     service: z.string()
         .min(1, "Wybierz rodzaj usługi"),
 
     message: z.string()
-        .min(10, "Wiadomość musi mieć co najmniej 10 znaków")
+        .min(1, "Wiadomość jest wymagana")
         .max(1000, "Wiadomość nie może przekraczać 1000 znaków"),
 
     consent: z.boolean()
@@ -63,7 +57,7 @@ type ContactFormData = z.infer<typeof contactFormSchema>;
 
 export function ContactSection() {
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
     const {
         register,
@@ -78,29 +72,26 @@ export function ContactSection() {
 
     const onSubmit = async (data: ContactFormData) => {
         setIsSubmitting(true);
-        setSubmitStatus('idle');
+        setSubmitStatus('submitting');
 
         try {
-            // Przygotowanie danych do wysłania
-            const formData = {
-                name: `${data.firstName} ${data.lastName}`,
-                email: data.email,
-                phone: data.phone || '',
-                service: data.service,
-                message: data.message
-            };
+            // Przygotowanie danych dla Netlify Forms
+            const formData = new FormData();
+            formData.append('form-name', 'contact');
+            formData.append('name', `${data.firstName} ${data.lastName}`);
+            formData.append('email', data.email);
+            formData.append('phone', data.phone || '');
+            formData.append('service', data.service);
+            formData.append('message', data.message);
 
-            // Wysyłanie do API
-            const response = await fetch('/api/contact', {
+            // Wysyłanie przez Netlify Forms
+            const response = await fetch('/', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: formData
             });
 
-            const result = await response.json();
-
             if (!response.ok) {
-                throw new Error(result.error || 'Błąd wysyłania wiadomości');
+                throw new Error('Błąd wysyłania wiadomości');
             }
 
             setSubmitStatus('success');
@@ -124,7 +115,7 @@ export function ContactSection() {
 
     return (
         <section id="kontakt" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
-            <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <GSAPCard className="text-center mb-12 sm:mb-16">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
@@ -177,7 +168,18 @@ export function ContactSection() {
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" name="contact" data-netlify="true" data-netlify-honeypot="bot-field" action="/" method="POST">
+                                {/* Ukryte pola wymagane przez Netlify Forms */}
+                                <div style={{ display: 'none' }}>
+                                    <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
+                                    <input type="hidden" name="form-name" value="contact" />
+                                    <input type="hidden" name="name" />
+                                    <input type="hidden" name="email" />
+                                    <input type="hidden" name="phone" />
+                                    <input type="hidden" name="service" />
+                                    <input type="hidden" name="message" />
+                                </div>
+                                
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
                                         <Label htmlFor="firstName" className="text-gray-700 font-medium text-sm sm:text-base">
@@ -333,7 +335,7 @@ export function ContactSection() {
 
                                 <Button
                                     type="submit"
-                                    disabled={isSubmitting || !isDirty || !isValid}
+                                    disabled={isSubmitting}
                                     className="w-full bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 h-10 sm:h-12 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (

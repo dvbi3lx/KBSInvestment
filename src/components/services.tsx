@@ -81,7 +81,7 @@ const services = [
 export function Services() {
     return (
         <section id="uslugi" className="py-12 sm:py-16 md:py-20 bg-white">
-            <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <GSAPCard className="text-center mb-12 sm:mb-16">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
@@ -136,9 +136,20 @@ export function Services() {
                                 Skontaktuj się z nami, a nasz zespół ekspertów przeanalizuje Twoje potrzeby 
                                 i przygotuje szczegółową wycenę dostosowaną do specyfiki projektu.
                             </p>
-                            <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 text-gray-500 px-2 sm:px-0">
-                                ⏱️ Odpowiadamy w ciągu 24 godzin • 📋 Dokładna analiza • 💼 Profesjonalne doradztwo
-                            </p>
+                            <div className="flex flex-col items-center gap-3 sm:gap-4 mb-6 sm:mb-8 lg:flex-row lg:justify-center lg:gap-4">
+                                <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200 shadow-sm">
+                                    <span className="text-lg sm:text-xl">⏱️</span>
+                                    <span className="text-sm sm:text-base text-gray-700">Odpowiadamy w ciągu 24 godzin</span>
+                                </div>
+                                <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200 shadow-sm">
+                                    <span className="text-lg sm:text-xl">📋</span>
+                                    <span className="text-sm sm:text-base text-gray-700">Dokładna analiza</span>
+                                </div>
+                                <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-white/60 backdrop-blur-sm rounded-full border border-gray-200 shadow-sm">
+                                    <span className="text-lg sm:text-xl">💼</span>
+                                    <span className="text-sm sm:text-base text-gray-700">Profesjonalne doradztwo</span>
+                                </div>
+                            </div>
                             <button
                                 onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
                                 className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
