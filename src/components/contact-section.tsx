@@ -23,38 +23,17 @@ import {
     AlertCircle
 } from "lucide-react";
 
-// Schema walidacji - uproszczona dla Netlify Forms
+// Schema walidacji - maksymalnie uproszczona
 const contactFormSchema = z.object({
-    firstName: z.string()
-        .min(1, "Imię jest wymagane")
-        .max(50, "Imię nie może przekraczać 50 znaków"),
-
-    lastName: z.string()
-        .min(1, "Nazwisko jest wymagane")
-        .max(50, "Nazwisko nie może przekraczać 50 znaków"),
-
-    email: z.string()
-        .email("Podaj poprawny adres email")
-        .min(1, "Email jest wymagany"),
-
-    phone: z.string()
-        .optional()
-        .or(z.literal('')),
-
-    service: z.string()
-        .min(1, "Wybierz rodzaj usługi")
-        .refine((val) => val !== '', {
-            message: "Wybierz rodzaj usługi"
-        }),
-
-    message: z.string()
-        .min(1, "Wiadomość jest wymagana")
-        .max(1000, "Wiadomość nie może przekraczać 1000 znaków"),
-
-    consent: z.boolean()
-        .refine((val) => val === true, {
-            message: "Musisz wyrazić zgodę na przetwarzanie danych"
-        })
+    firstName: z.string().min(1, "Imię jest wymagane"),
+    lastName: z.string().min(1, "Nazwisko jest wymagane"),
+    email: z.string().email("Podaj poprawny adres email"),
+    phone: z.string().optional(),
+    service: z.string().min(1, "Wybierz rodzaj usługi"),
+    message: z.string().min(1, "Wiadomość jest wymagana"),
+    consent: z.boolean().refine((val) => val === true, {
+        message: "Musisz wyrazić zgodę na przetwarzanie danych"
+    })
 });
 
 type ContactFormData = z.infer<typeof contactFormSchema>;
@@ -71,32 +50,48 @@ export function ContactSection() {
         watch
     } = useForm<ContactFormData>({
         resolver: zodResolver(contactFormSchema),
-        mode: "onChange"
+        mode: "onChange",
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            service: 'gas',
+            message: '',
+            consent: false
+        }
     });
 
     const onSubmit = async (data: ContactFormData) => {
-        console.log('Form data:', data); // Debug
+        console.log('Form data:', data);
         setIsSubmitting(true);
         setSubmitStatus('submitting');
 
         try {
+            // Przygotowanie danych
+            const formData = {
+                'form-name': 'contact',
+                'name': `${data.firstName} ${data.lastName}`,
+                'email': data.email,
+                'phone': data.phone || '',
+                'service': data.service,
+                'message': data.message,
+                'consent': data.consent ? 'true' : 'false'
+            };
+
+            console.log('Sending data:', formData);
+
             // Wysyłanie przez Netlify Forms
             const response = await fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams({
-                    'form-name': 'contact',
-                    'name': `${data.firstName} ${data.lastName}`,
-                    'email': data.email,
-                    'phone': data.phone || '',
-                    'service': data.service,
-                    'message': data.message,
-                    'consent': data.consent ? 'true' : 'false'
-                })
+                body: new URLSearchParams(formData)
             });
 
+            console.log('Response status:', response.status);
+
             if (!response.ok) {
-                throw new Error('Błąd wysyłania wiadomości');
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
             }
 
             setSubmitStatus('success');
@@ -269,7 +264,6 @@ export function ContactSection() {
                                             }`}
                                         {...register('service')}
                                     >
-                                        <option value="">Wybierz rodzaj usługi</option>
                                         <option value="gas">Instalacje gazowe</option>
                                         <option value="heating">Instalacje grzewcze</option>
                                         <option value="water">Woda i kanalizacja</option>
