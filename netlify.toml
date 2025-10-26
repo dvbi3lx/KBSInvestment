@@ -1,0 +1,32 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Next.js Runtime configuration
+[functions]
+  directory = "netlify/functions"
+
+# Forms configuration for Next.js Runtime
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[plugins.inputs]
+  # Enable forms detection
+  enableForms = true
+
+# Redirects for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for CORS
+[[headers]]
+  for = "/netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Methods = "POST, OPTIONS"

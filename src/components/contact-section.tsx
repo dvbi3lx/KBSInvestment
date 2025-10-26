@@ -62,7 +62,7 @@ export function ContactSection() {
     const {
         register,
         handleSubmit,
-        formState: { errors, isDirty, isValid },
+        formState: { errors },
         reset,
         watch
     } = useForm<ContactFormData>({
@@ -75,23 +75,24 @@ export function ContactSection() {
         setSubmitStatus('submitting');
 
         try {
-            // Przygotowanie danych dla Netlify Forms
+            // Przygotowanie danych dla Netlify Functions
             const formData = new FormData();
-            formData.append('form-name', 'contact');
             formData.append('name', `${data.firstName} ${data.lastName}`);
             formData.append('email', data.email);
             formData.append('phone', data.phone || '');
             formData.append('service', data.service);
             formData.append('message', data.message);
 
-            // Wysyłanie przez Netlify Forms
-            const response = await fetch('/', {
+            // Wysyłanie przez Netlify Functions
+            const response = await fetch('/netlify/functions/contact', {
                 method: 'POST',
                 body: formData
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
-                throw new Error('Błąd wysyłania wiadomości');
+                throw new Error(result.error || 'Błąd wysyłania wiadomości');
             }
 
             setSubmitStatus('success');
@@ -168,18 +169,7 @@ export function ContactSection() {
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" name="contact" data-netlify="true" data-netlify-honeypot="bot-field" action="/" method="POST">
-                                {/* Ukryte pola wymagane przez Netlify Forms */}
-                                <div style={{ display: 'none' }}>
-                                    <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
-                                    <input type="hidden" name="form-name" value="contact" />
-                                    <input type="hidden" name="name" />
-                                    <input type="hidden" name="email" />
-                                    <input type="hidden" name="phone" />
-                                    <input type="hidden" name="service" />
-                                    <input type="hidden" name="message" />
-                                </div>
-                                
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
                                         <Label htmlFor="firstName" className="text-gray-700 font-medium text-sm sm:text-base">
