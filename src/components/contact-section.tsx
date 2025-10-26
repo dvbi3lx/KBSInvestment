@@ -170,11 +170,7 @@ export function ContactSection() {
 
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
                                 {/* Ukryte pole honeypot dla Netlify */}
-                                <div style={{ display: 'none' }}>
-                                    <label>
-                                        Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
-                                    </label>
-                                </div>
+                                <input type="hidden" name="bot-field" />
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
                                         <Label htmlFor="firstName" className="text-gray-700 font-medium text-sm sm:text-base">
