@@ -11,6 +11,17 @@ import { CookieConsent } from "@/components/cookie-consent";
 export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
+      {/* Ukryty formularz dla Netlify Forms - musi być w głównej stronie */}
+      <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input type="text" name="phone" />
+        <input type="text" name="service" />
+        <textarea name="message"></textarea>
+        <input type="checkbox" name="consent" />
+        <input type="text" name="bot-field" />
+      </form>
+      
       <Hero />
       <Services />
       <WhyChooseUs />

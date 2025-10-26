@@ -24,3 +24,14 @@
 [forms]
   [forms.contact]
     name = "contact"
+
+# Redirects
+[[redirects]]
+  from = "/contact-static"
+  to = "/contact-static.html"
+  status = 200
+
+[[redirects]]
+  from = "/thank-you"
+  to = "/thank-you.html"
+  status = 200
