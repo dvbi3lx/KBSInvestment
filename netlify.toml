@@ -24,9 +24,3 @@
 [forms]
   [forms.contact]
     name = "contact"
-
-# Redirects for SPA
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
