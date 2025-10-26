@@ -16,7 +16,7 @@ Refer to https://ntl.fyi/next-runtime-forms-migration for migration example.
 
 ### **2. Konfiguracja Netlify**
 - `netlify.toml` - konfiguracja dla Next.js Runtime
-- Włączone wykrywanie formularzy
+- Plugin Next.js bez dodatkowych inputów
 - Headers CORS dla funkcji
 - Redirects dla SPA
 
