@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     Phone,
     Mail,
@@ -62,6 +62,22 @@ export function ContactSection() {
         }
     });
 
+    // Dynamiczna walidacja
+    const [isFormValid, setIsFormValid] = useState(false);
+    const watchedValues = watch();
+
+    useEffect(() => {
+        const isValid = 
+            watchedValues.firstName?.length > 0 &&
+            watchedValues.lastName?.length > 0 &&
+            watchedValues.email?.includes('@') &&
+            watchedValues.service?.length > 0 &&
+            watchedValues.message?.length > 0 &&
+            watchedValues.consent === true;
+        
+        setIsFormValid(isValid);
+    }, [watchedValues]);
+
     const onSubmit = async (data: ContactFormData) => {
         console.log('Form data:', data);
         setIsSubmitting(true);
@@ -110,8 +126,6 @@ export function ContactSection() {
             setIsSubmitting(false);
         }
     };
-
-    const watchedConsent = watch('consent');
 
     return (
         <section id="kontakt" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
@@ -307,10 +321,7 @@ export function ContactSection() {
                                     <Checkbox
                                         id="consent"
                                         className="mt-1 border-gray-300 focus:ring-primary"
-                                        checked={watchedConsent}
-                                        onCheckedChange={(checked) => {
-                                            register('consent').onChange({ target: { value: checked } });
-                                        }}
+                                        {...register('consent')}
                                     />
                                     <div className="flex-1">
                                         <Label htmlFor="consent" className="text-xs sm:text-sm text-gray-600">
@@ -327,7 +338,7 @@ export function ContactSection() {
 
                                 <Button
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || !isFormValid}
                                     className="w-full bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 h-10 sm:h-12 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
