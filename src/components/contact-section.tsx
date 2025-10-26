@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
@@ -46,7 +46,8 @@ export function ContactSection() {
         register,
         handleSubmit,
         formState: { errors },
-        reset
+        reset,
+        control
     } = useForm<ContactFormData>({
         resolver: zodResolver(contactFormSchema),
         mode: "onChange",
@@ -303,10 +304,17 @@ export function ContactSection() {
                                 </div>
 
                                 <div className="flex items-start space-x-3">
-                                    <Checkbox
-                                        id="consent"
-                                        className="mt-1 border-gray-300 focus:ring-primary"
-                                        {...register('consent')}
+                                    <Controller
+                                        name="consent"
+                                        control={control}
+                                        render={({ field }) => (
+                                            <Checkbox
+                                                id="consent"
+                                                className="mt-1 border-gray-300 focus:ring-primary"
+                                                checked={field.value}
+                                                onCheckedChange={field.onChange}
+                                            />
+                                        )}
                                     />
                                     <div className="flex-1">
                                         <Label htmlFor="consent" className="text-xs sm:text-sm text-gray-600">
