@@ -172,7 +172,7 @@ export function ContactSection() {
                                 {/* Ukryte pole honeypot dla Netlify */}
                                 <div style={{ display: 'none' }}>
                                     <label>
-                                        Don't fill this out if you're human: <input name="bot-field" />
+                                        Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
                                     </label>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
