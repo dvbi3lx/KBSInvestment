@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className="min-h-screen overflow-x-hidden">
       {/* Ukryty formularz dla Netlify Forms - musi być w głównej stronie */}
-      <form name="contact" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+      <form name="contact-react" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
         <input type="text" name="name" />
         <input type="email" name="email" />
         <input type="text" name="phone" />
