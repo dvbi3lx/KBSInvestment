@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { GSAPCard } from "@/components/gsap-card";
 import {
     Wrench,
     Droplets,
@@ -11,7 +11,8 @@ import {
     Shield,
     FileText,
     HardHat,
-    Settings
+    Settings,
+    DraftingCompass
 } from "lucide-react";
 
 const services = [
@@ -65,9 +66,15 @@ const services = [
     },
     {
         icon: Settings,
-        title: "Eksploatacja i nadzór",
-        description: "Nadzór techniczny i eksploatacja urządzeń energetycznych",
+        title: "Eksploatacja i dozór",
+        description: "Dozór techniczny i eksploatacja urządzeń elektrycznych, instalacji cieplnych oraz gazowych",
         color: "from-teal-500 to-green-500"
+    },
+    {
+        icon: DraftingCompass,
+        title: "Projektowanie",
+        description: "Projektowanie instalacji elektrycznych, centralnego ogrzewania, gazowych i wentylacyjnych",
+        color: "from-cyan-500 to-blue-600"
     }
 ];
 
@@ -76,13 +83,7 @@ export function Services() {
         <section id="uslugi" className="py-12 sm:py-16 md:py-20 bg-white">
             <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-12 sm:mb-16"
-                >
+                <GSAPCard className="text-center mb-12 sm:mb-16">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                         Nasze <span className="text-primary">usługi</span>
                     </h2>
@@ -90,20 +91,17 @@ export function Services() {
                         Oferujemy kompleksowe rozwiązania w zakresie instalacji i remontów,
                         zapewniając najwyższą jakość i bezpieczeństwo każdej realizacji.
                     </p>
-                </motion.div>
+                </GSAPCard>
 
                 {/* Services Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                     {services.map((service, index) => (
-                        <motion.div
+                        <GSAPCard
                             key={service.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            whileHover={{ y: -8, scale: 1.02 }}
+                            delay={index * 0.05}
+                            className={`group ${index === services.length - 1 ? 'lg:col-start-2' : ''}`}
                         >
-                            <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50">
+                            <Card className="h-full border-0 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50">
                                 <CardHeader className="text-center pb-3 sm:pb-4">
                                     <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 shadow-lg`}>
                                         <service.icon className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
@@ -116,18 +114,12 @@ export function Services() {
                                     </CardDescription>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </GSAPCard>
                     ))}
                 </div>
 
                 {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-center mt-12 sm:mt-16"
-                >
+                <GSAPCard delay={0.3} className="text-center mt-12 sm:mt-16">
                     <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/10 via-blue-500/10 to-primary/10 border border-white/20 backdrop-blur-md p-6 sm:p-8 lg:p-12">
                         {/* Background Elements */}
                         <div className="absolute inset-0">
@@ -138,22 +130,24 @@ export function Services() {
                         {/* Content */}
                         <div className="relative z-10">
                             <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
-                                Potrzebujesz wyceny?
+                                Potrzebujesz wyceny swojego projektu?
                             </h3>
-                            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-gray-600 px-2 sm:px-0">
-                                Skontaktuj się z nami i otrzymaj bezpłatną wycenę w ciągu 24 godzin
+                            <p className="text-base sm:text-lg md:text-xl mb-4 sm:mb-5 text-gray-600 px-2 sm:px-0 leading-relaxed">
+                                Skontaktuj się z nami, a nasz zespół ekspertów przeanalizuje Twoje potrzeby 
+                                i przygotuje szczegółową wycenę dostosowaną do specyfiki projektu.
                             </p>
-                            <motion.button
+                            <p className="text-sm sm:text-base md:text-lg mb-6 sm:mb-8 text-gray-500 px-2 sm:px-0">
+                                ⏱️ Odpowiadamy w ciągu 24 godzin • 📋 Dokładna analiza • 💼 Profesjonalne doradztwo
+                            </p>
+                            <button
                                 onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
                             >
                                 Uzyskaj wycenę
-                            </motion.button>
+                            </button>
                         </div>
                     </div>
-                </motion.div>
+                </GSAPCard>
             </div>
         </section>
     );

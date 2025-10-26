@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Polityka Prywatności - KBS Investment",
-    description: "Polityka prywatności KBS Investment. Dowiedz się, jak chronimy Twoje dane osobowe zgodnie z RODO.",
+    title: "Polityka Prywatności - KBS Investment Sp. z o.o.",
+    description: "Polityka prywatności KBS Investment Sp. z o.o. Dowiedz się, jak chronimy Twoje dane osobowe zgodnie z RODO.",
     keywords: "polityka prywatności, RODO, ochrona danych, KBS Investment",
 };
 
@@ -53,13 +53,14 @@ export default function PolitykaPrywatnosci() {
                         </div>
                         <div className="prose prose-gray max-w-none">
                             <p className="text-gray-700 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
-                                KBS Investment z siedzibą w Chorzowie (dalej: &ldquo;my&rdquo;, &ldquo;nas&rdquo;, &ldquo;firma&rdquo;) szanuje prywatność
+                                KBS Investment Sp. z o.o. z siedzibą w Chorzowie (dalej: &ldquo;my&rdquo;, &ldquo;nas&rdquo;, &ldquo;firma&rdquo;) szanuje prywatność
                                 wszystkich osób odwiedzających naszą stronę internetową. Niniejsza Polityka Prywatności
                                 wyjaśnia, w jaki sposób zbieramy, używamy i chronimy informacje o użytkownikach naszej strony.
                             </p>
                             <p className="text-gray-700 leading-relaxed text-sm sm:text-base">
-                                <strong>Ważne:</strong> Ta strona internetowa <strong>nie używa plików cookie</strong>
-                                ani nie śledzi aktywności użytkowników. Wszystkie dane są przetwarzane lokalnie w przeglądarce.
+                                <strong>Ważne:</strong> Ta strona internetowa <strong>nie używa plików cookie do śledzenia ani analityki</strong>.
+                                Używamy jedynie localStorage do przechowywania Twoich preferencji (zgoda na politykę prywatności, stan interfejsu).
+                                Wszystkie dane są przetwarzane lokalnie w Twojej przeglądarce i nie są wysyłane do żadnych zewnętrznych serwisów analitycznych.
                             </p>
                         </div>
                     </section>
@@ -81,7 +82,7 @@ export default function PolitykaPrywatnosci() {
                                     <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
                                         <li className="flex items-center space-x-2">
                                             <span className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></span>
-                                            <span>Nazwa: KBS Investment</span>
+                                            <span>Nazwa: KBS Investment Sp. z o.o.</span>
                                         </li>
                                         <li className="flex items-center space-x-2">
                                             <span className="w-2 h-2 bg-primary rounded-full flex-shrink-0"></span>
@@ -98,11 +99,11 @@ export default function PolitykaPrywatnosci() {
                                     <ul className="space-y-2 text-gray-700 text-sm sm:text-base">
                                         <li className="flex items-center space-x-2">
                                             <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                                            <span>+48 570-751-670</span>
+                                            <span>+48 570-751-670, +48 516-437-707</span>
                                         </li>
                                         <li className="flex items-center space-x-2">
                                             <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                                            <span>kontakt@kbs-investment.pl</span>
+                                            <span>kbsinvestment@interia.pl</span>
                                         </li>
                                     </ul>
                                 </div>
@@ -141,18 +142,19 @@ export default function PolitykaPrywatnosci() {
                             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 sm:p-6">
                                 <h3 className="font-semibold text-blue-900 mb-3 flex items-center space-x-2 text-sm sm:text-base">
                                     <span className="w-3 h-3 bg-blue-500 rounded-full flex-shrink-0"></span>
-                                    <span>Dane techniczne (automatyczne)</span>
+                                    <span>Dane przechowywane lokalnie</span>
                                 </h3>
                                 <p className="text-blue-800 mb-3 text-sm sm:text-base">
-                                    Podczas korzystania ze strony automatycznie zbierane są:
+                                    W Twojej przeglądarce przechowujemy lokalnie (localStorage):
                                 </p>
                                 <ul className="space-y-2 text-blue-800 text-sm sm:text-base">
-                                    <li>• Adres IP</li>
-                                    <li>• Typ przeglądarki</li>
-                                    <li>• System operacyjny</li>
-                                    <li>• Data i godzina dostępu</li>
-                                    <li>• Strony odwiedzone</li>
+                                    <li>• Zgoda na politykę prywatności</li>
+                                    <li>• Preferencje interfejsu użytkownika</li>
+                                    <li>• Stan modali i okien dialogowych</li>
                                 </ul>
+                                <p className="text-blue-800 mt-3 text-xs sm:text-sm italic">
+                                    Dane te są przechowywane tylko w Twojej przeglądarce i nie są wysyłane na nasze serwery.
+                                </p>
                             </div>
                         </div>
                     </section>
@@ -171,11 +173,11 @@ export default function PolitykaPrywatnosci() {
                             <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 sm:p-6">
                                 <h3 className="font-semibold text-orange-900 mb-3 text-sm sm:text-base">Główne cele:</h3>
                                 <ul className="space-y-2 text-orange-800 text-sm sm:text-base">
-                                    <li>• Świadczenie usług inwestycyjnych</li>
+                                    <li>• Świadczenie usług instalacyjnych</li>
                                     <li>• Kontakt z klientami</li>
                                     <li>• Realizacja projektów</li>
                                     <li>• Faktury i rozliczenia</li>
-                                    <li>• Marketing bezpośredni (za zgodą)</li>
+                                    <li>• Odpowiedzi na zapytania ofertowe</li>
                                 </ul>
                             </div>
                             <div className="bg-orange-50 border border-orange-200 rounded-xl p-4 sm:p-6">
@@ -198,7 +200,7 @@ export default function PolitykaPrywatnosci() {
                         <div className="bg-red-50 border border-red-200 rounded-xl p-4 sm:p-6">
                             <h3 className="font-semibold text-red-900 mb-3 text-sm sm:text-base">Zasady udostępniania:</h3>
                             <p className="text-red-800 mb-4 text-sm sm:text-base">
-                                Twoje dane osobowe <strong>nie są sprzedawane, wynajmowane ani udostępniane</strong>
+                                Twoje dane osobowe <strong>nie są sprzedawane, wynajmowane ani udostępniane </strong>
                                 osobom trzecim, z wyjątkiem przypadków określonych w niniejszej polityce.
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -341,11 +343,11 @@ export default function PolitykaPrywatnosci() {
                                     <div className="space-y-2">
                                         <div className="flex items-center space-x-2">
                                             <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                                            <span className="text-gray-700 text-sm sm:text-base">kontakt@kbs-investment.pl</span>
+                                            <span className="text-gray-700 text-sm sm:text-base">kbsinvestment@interia.pl</span>
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <Phone className="h-4 w-4 text-primary flex-shrink-0" />
-                                            <span className="text-gray-700 text-sm sm:text-base">+48 570-751-670</span>
+                                            <span className="text-gray-700 text-sm sm:text-base">+48 570-751-670, +48 516-437-707</span>
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <MapPin className="h-4 w-4 text-primary flex-shrink-0" />

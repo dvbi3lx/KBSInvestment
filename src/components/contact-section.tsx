@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { GSAPCard } from "@/components/gsap-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -126,13 +126,7 @@ export function ContactSection() {
         <section id="kontakt" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50/30">
             <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-12 sm:mb-16"
-                >
+                <GSAPCard className="text-center mb-12 sm:mb-16">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                         Skontaktuj się z <span className="text-primary">nami</span>
                     </h2>
@@ -140,27 +134,17 @@ export function ContactSection() {
                         Jesteśmy gotowi odpowiedzieć na wszystkie Twoje pytania i pomóc w realizacji projektu.
                         Skontaktuj się z nami już dziś!
                     </p>
-                </motion.div>
+                </GSAPCard>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
                     {/* Contact Form */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="lg:pr-0 lg:pr-8"
-                    >
+                    <GSAPCard delay={0.1} className="lg:pr-0 lg:pr-8">
                         <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20">
                             <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Wyślij wiadomość</h3>
 
                             {/* Status Messages */}
                             {submitStatus === 'success' && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg"
-                                >
+                                <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300">
                                     <div className="flex items-start gap-2 sm:gap-3">
                                         <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-green-600 mt-0.5 flex-shrink-0" />
                                         <div>
@@ -173,15 +157,11 @@ export function ContactSection() {
                                             </p>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             )}
 
                             {submitStatus === 'error' && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg"
-                                >
+                                <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg animate-in fade-in slide-in-from-top-2 duration-300">
                                     <div className="flex items-start gap-2 sm:gap-3">
                                         <AlertCircle className="h-4 w-4 sm:h-5 sm:w-5 text-red-600 mt-0.5 flex-shrink-0" />
                                         <div>
@@ -194,7 +174,7 @@ export function ContactSection() {
                                             </p>
                                         </div>
                                     </div>
-                                </motion.div>
+                                </div>
                             )}
 
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
@@ -357,45 +337,25 @@ export function ContactSection() {
                                     className="w-full bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 h-10 sm:h-12 text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
-                                        <motion.div
-                                            className="flex items-center gap-2"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                        >
+                                        <div className="flex items-center gap-2">
                                             <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                                             Wysyłanie wiadomości...
-                                        </motion.div>
+                                        </div>
                                     ) : (
-                                        <motion.div
-                                            className="flex items-center gap-2"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                        >
+                                        <div className="flex items-center gap-2">
                                             <Send className="w-4 h-4 sm:w-5 sm:h-5" />
                                             Wyślij wiadomość
-                                        </motion.div>
+                                        </div>
                                     )}
                                 </Button>
                             </form>
                         </div>
-                    </motion.div>
+                    </GSAPCard>
 
                     {/* Contact Info */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                        className="lg:pl-0 lg:pl-8"
-                    >
+                    <GSAPCard delay={0.2} className="lg:pl-0 lg:pl-8">
                         {/* Company Info */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="space-y-6 sm:space-y-8"
-                        >
+                        <div className="space-y-6 sm:space-y-8">
                             {/* Contact Details */}
                             <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl border border-white/20">
                                 <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Dane kontaktowe</h3>
@@ -406,7 +366,7 @@ export function ContactSection() {
                                             <Phone className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-gray-900 text-sm sm:text-base">+48 570-751-670</p>
+                                            <p className="font-medium text-gray-900 text-sm sm:text-base">+48 570-751-670, +48 516-437-707</p>
                                             <p className="text-xs sm:text-sm text-gray-600">Pon-Pt: 8:00-18:00</p>
                                         </div>
                                     </div>
@@ -416,7 +376,7 @@ export function ContactSection() {
                                             <Mail className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                                         </div>
                                         <div>
-                                            <p className="font-medium text-gray-900 text-sm sm:text-base">kontakt@kbsinvestment.pl</p>
+                                            <p className="font-medium text-gray-900 text-sm sm:text-base">kbsinvestment@interia.pl</p>
                                             <p className="text-xs sm:text-sm text-gray-600">Odpowiemy w ciągu 24h</p>
                                         </div>
                                     </div>
@@ -437,7 +397,7 @@ export function ContactSection() {
                                         </div>
                                         <div>
                                             <p className="font-medium text-gray-900 text-sm sm:text-base">Godziny pracy</p>
-                                            <p className="text-xs sm:text-sm text-gray-600">Pon-Pt: 8:00-18:00, Sob: 9:00-14:00</p>
+                                            <p className="text-xs sm:text-sm text-gray-600">Pon-Pt: 8:00-16:00, Sob: 8:00-13:00</p>
                                         </div>
                                     </div>
                                 </div>
@@ -479,8 +439,8 @@ export function ContactSection() {
                                     </div>
                                 </div>
                             </div>
-                        </motion.div>
-                    </motion.div>
+                        </div>
+                    </GSAPCard>
                 </div>
             </div>
         </section>

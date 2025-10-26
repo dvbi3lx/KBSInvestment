@@ -1,13 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
 import { useState } from "react";
-import { ChevronDown, Phone, Mail } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ChevronDown } from "lucide-react";
+import { GSAPCard } from "@/components/gsap-card";
 
 const faqData = [
     {
-        question: "Jakie usługi oferuje KBS Investment?",
+        question: "Jakie usługi oferuje KBS Investment Sp. z o.o.?",
         answer: "Oferujemy kompleksowe usługi instalacyjne: instalacje gazowe, grzewcze, wodno-kanalizacyjne, elektryczne, wentylację i klimatyzację, konserwację, inwentaryzację, spawanie oraz eksploatację i nadzór urządzeń."
     },
     {
@@ -35,109 +34,50 @@ export function FAQ() {
         <section id="faq" className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
             <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6">
                 {/* Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-12 sm:mb-16"
-                >
+                <GSAPCard className="text-center mb-12 sm:mb-16">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                         Często zadawane <span className="text-primary">pytania</span>
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-0">
                         Odpowiedzi na najczęściej zadawane pytania dotyczące naszych usług i procesu realizacji projektów.
                     </p>
-                </motion.div>
+                </GSAPCard>
 
                 {/* FAQ List */}
-                <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="max-w-4xl mx-auto"
-                >
+                <div className="max-w-4xl mx-auto">
                     <div className="space-y-3 sm:space-y-4">
                         {faqData.map((faq, index) => (
-                            <motion.div
+                            <GSAPCard
                                 key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.6, delay: 0.1 * index }}
+                                delay={index * 0.05}
                                 className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300"
                             >
-                                <motion.button
+                                <button
                                     onClick={() => toggleFAQ(index)}
                                     className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-6 text-left flex items-center justify-between hover:bg-gray-50/50 transition-colors duration-200 rounded-xl sm:rounded-2xl"
-                                    whileHover={{ scale: 1.01 }}
-                                    whileTap={{ scale: 0.99 }}
                                 >
                                     <h3 className="text-base sm:text-lg font-semibold text-gray-900 pr-3 sm:pr-4">
                                         {faq.question}
                                     </h3>
-                                    <motion.div
-                                        className="flex-shrink-0"
-                                        animate={{ rotate: openIndex === index ? 180 : 0 }}
-                                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                                    >
-                                        <ChevronDown className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                                    </motion.div>
-                                </motion.button>
+                                    <div className="flex-shrink-0">
+                                        <ChevronDown className={`h-5 w-5 sm:h-6 sm:w-6 text-primary transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''}`} />
+                                    </div>
+                                </button>
 
-                                <AnimatePresence>
-                                    {openIndex === index && (
-                                        <motion.div
-                                            initial={{ opacity: 0, height: 0, scale: 0.95 }}
-                                            animate={{
-                                                opacity: 1,
-                                                height: "auto",
-                                                scale: 1,
-                                                transition: {
-                                                    height: { duration: 0.4, ease: "easeInOut" },
-                                                    opacity: { duration: 0.3, delay: 0.1 },
-                                                    scale: { duration: 0.3, ease: "easeOut" }
-                                                }
-                                            }}
-                                            exit={{
-                                                opacity: 0,
-                                                height: 0,
-                                                scale: 0.95,
-                                                transition: {
-                                                    height: { duration: 0.3, ease: "easeInOut" },
-                                                    opacity: { duration: 0.2 },
-                                                    scale: { duration: 0.2, ease: "easeIn" }
-                                                }
-                                            }}
-                                            className="overflow-hidden"
-                                        >
-                                            <motion.div
-                                                initial={{ opacity: 0, y: 10 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ duration: 0.3, delay: 0.2 }}
-                                                className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-6"
-                                            >
-                                                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                                                    {faq.answer}
-                                                </p>
-                                            </motion.div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </motion.div>
+                                {openIndex === index && (
+                                    <div className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-6 animate-in fade-in slide-in-from-top-2 duration-300">
+                                        <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                            {faq.answer}
+                                        </p>
+                                    </div>
+                                )}
+                            </GSAPCard>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
                 {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    className="mt-16 sm:mt-20 text-center"
-                >
+                <GSAPCard delay={0.3} className="mt-16 sm:mt-20 text-center">
                     <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/10 via-blue-500/10 to-primary/10 border border-white/20 backdrop-blur-sm">
                         {/* Background Elements */}
                         <div className="absolute inset-0">
@@ -146,64 +86,24 @@ export function FAQ() {
                         </div>
 
                         <div className="relative z-10 p-6 sm:p-8 md:p-12 lg:p-16 text-center">
-                            <motion.h3
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.5 }}
-                                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight"
-                            >
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                                 Nie znalazłeś odpowiedzi?{" "}
                                 <span className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 bg-clip-text text-transparent">
                                     Skontaktuj się z nami
                                 </span>
-                            </motion.h3>
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.6 }}
-                                className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0"
-                            >
+                            </h3>
+                            <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
                                 Nasi specjaliści chętnie odpowiedzą na wszystkie Twoje pytania i pomogą w realizacji projektu.
-                            </motion.p>
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.5, delay: 0.7 }}
-                                className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
+                            </p>
+                            <button
+                                onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-300"
                             >
-                                <motion.div
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="w-full sm:w-auto"
-                                >
-                                    <Button
-                                        onClick={() => window.location.href = 'tel:+48570751670'}
-                                        className="w-full sm:w-auto h-10 sm:h-12 px-6 sm:px-8 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-xl text-base sm:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                                        <Phone className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                                        Zadzwoń teraz
-                                    </Button>
-                                </motion.div>
-                                <motion.div
-                                    whileHover={{ scale: 1.02, y: -2 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="w-full sm:w-auto"
-                                >
-                                    <Button
-                                        onClick={() => window.location.href = 'mailto:kontakt@kbsinvestment.pl'}
-                                        variant="outline" className="w-full sm:w-auto h-10 sm:h-12 px-6 sm:px-8 border-2 border-primary text-primary hover:bg-primary hover:text-white rounded-xl text-base sm:text-lg font-semibold transition-all duration-300">
-                                        <Mail className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-                                        Napisz email
-                                    </Button>
-                                </motion.div>
-                            </motion.div>
+                                Skontaktuj się
+                            </button>
                         </div>
                     </div>
-                </motion.div>
+                </GSAPCard>
             </div>
         </section>
     );

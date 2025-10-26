@@ -1,15 +1,15 @@
 "use client";
 
-import { motion } from "motion/react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Star, Quote, ArrowRight, Users, Award, Zap } from "lucide-react";
+import { Star, Quote, ArrowRight } from "lucide-react";
+import { GSAPCard } from "@/components/gsap-card";
 
 const testimonials = [
     {
         name: "Jan Kowalski",
         position: "Właściciel firmy",
         company: "TechCorp Sp. z o.o.",
-        content: "KBS Investment wykonał kompleksową instalację elektryczną w naszym biurowcu. Prace zostały zrealizowane terminowo, profesjonalnie i zgodnie z najwyższymi standardami bezpieczeństwa.",
+        content: "KBS Investment Sp. z o.o. wykonał kompleksową instalację elektryczną w naszym biurowcu. Prace zostały zrealizowane terminowo, profesjonalnie i zgodnie z najwyższymi standardami bezpieczeństwa.",
         rating: 5,
         avatar: "JK"
     },
@@ -17,7 +17,7 @@ const testimonials = [
         name: "Anna Nowak",
         position: "Dyrektor techniczny",
         company: "GreenBuild Solutions",
-        content: "Współpraca z KBS Investment to czysta przyjemność. Ich zespół wykazał się ogromną wiedzą techniczną i dbałością o szczegóły podczas montażu systemu wentylacyjnego.",
+        content: "Współpraca z KBS Investment Sp. z o.o. to czysta przyjemność. Ich zespół wykazał się ogromną wiedzą techniczną i dbałością o szczegóły podczas montażu systemu wentylacyjnego.",
         rating: 5,
         avatar: "AN"
     },
@@ -25,7 +25,7 @@ const testimonials = [
         name: "Piotr Wiśniewski",
         position: "Inwestor",
         company: "Residential Complex",
-        content: "Instalacje gazowe i grzewcze wykonane przez KBS Investment działają bez zarzutu od ponad 6 lat. Polecam ich usługi każdemu, kto ceni sobie jakość i niezawodność.",
+        content: "Instalacje gazowe i grzewcze wykonane przez KBS Investment Sp. z o.o. działają bez zarzutu od ponad 6 lat. Polecam ich usługi każdemu, kto ceni sobie jakość i niezawodność.",
         rating: 5,
         avatar: "PW"
     },
@@ -33,7 +33,7 @@ const testimonials = [
         name: "Maria Zielińska",
         position: "Kierownik projektu",
         company: "Office Park Development",
-        content: "Profesjonalne podejście, terminowość i najwyższa jakość wykonania. KBS Investment to partner, na którym można polegać w każdym projekcie instalacyjnym.",
+        content: "Profesjonalne podejście, terminowość i najwyższa jakość wykonania. KBS Investment Sp. z o.o. to partner, na którym można polegać w każdym projekcie instalacyjnym.",
         rating: 5,
         avatar: "MZ"
     },
@@ -41,7 +41,7 @@ const testimonials = [
         name: "Tomasz Lewandowski",
         position: "Właściciel",
         company: "Industrial Solutions",
-        content: "Kompleksowa inwentaryzacja techniczna i modernizacja instalacji wodno-kanalizacyjnych wykonane perfekcyjnie. Zespół KBS Investment to prawdziwi profesjonaliści.",
+        content: "Kompleksowa inwentaryzacja techniczna i modernizacja instalacji wodno-kanalizacyjnych wykonane perfekcyjnie. Zespół KBS Investment Sp. z o.o. to prawdziwi profesjonaliści.",
         rating: 5,
         avatar: "TL"
     },
@@ -49,7 +49,7 @@ const testimonials = [
         name: "Katarzyna Dąbrowska",
         position: "Architekt",
         company: "Modern Architecture Studio",
-        content: "Współpraca z KBS Investment podczas realizacji projektu biurowca była wzorowa. Ich ekspertyza techniczna i dbałość o estetykę instalacji zasługują na najwyższą ocenę.",
+        content: "Współpraca z KBS Investment Sp. z o.o. podczas realizacji projektu biurowca była wzorowa. Ich ekspertyza techniczna i dbałość o estetykę instalacji zasługują na najwyższą ocenę.",
         rating: 5,
         avatar: "KD"
     }
@@ -66,23 +66,11 @@ export function Testimonials() {
 
             <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-6 relative z-10">
                 {/* Header Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-16 sm:mb-20"
-                >
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                        className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6"
-                    >
+                <GSAPCard className="text-center mb-16 sm:mb-20">
+                    <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-2 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
                         <Star className="h-3 w-3 sm:h-4 sm:w-4 fill-primary" />
                         Średnia ocena: 5.0/5.0
-                    </motion.div>
+                    </div>
 
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                         Zaufali nam{" "}
@@ -91,23 +79,19 @@ export function Testimonials() {
                         </span>
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-2 sm:px-0">
-                        Dołącz do grona zadowolonych klientów, którzy wybrali KBS Investment jako swojego
+                        Dołącz do grona zadowolonych klientów, którzy wybrali KBS Investment Sp. z o.o. jako swojego
                         zaufanego partnera w realizacji projektów instalacyjnych.
                     </p>
-                </motion.div>
+                </GSAPCard>
 
                 {/* Testimonials Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                     {testimonials.map((testimonial, index) => (
-                        <motion.div
+                        <GSAPCard
                             key={testimonial.name}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            whileHover={{ y: -8, scale: 1.02 }}
+                            delay={index * 0.05}
                         >
-                            <Card className="h-full border-0 shadow-lg hover:shadow-2xl transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50">
+                            <Card className="h-full border-0 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-gradient-to-br from-white to-gray-50/50">
                                 <CardHeader className="pb-3 sm:pb-4">
                                     <div className="flex items-center justify-between mb-3 sm:mb-4">
                                         <div className="flex items-center gap-2 sm:gap-3">
@@ -135,146 +119,61 @@ export function Testimonials() {
                                     </p>
                                 </CardContent>
                             </Card>
-                        </motion.div>
+                        </GSAPCard>
                     ))}
                 </div>
 
                 {/* Enhanced CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-                    className="text-center mt-16 sm:mt-20"
-                >
+                <GSAPCard delay={0.3} className="text-center mt-16 sm:mt-20">
                     <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16">
                         {/* Glassy Background */}
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-blue-500/10 to-primary/5 backdrop-blur-sm border border-white/20 rounded-2xl sm:rounded-3xl"></div>
 
-                        {/* Animated Background Elements - Fixed positioning */}
-                        <motion.div
-                            className="absolute top-4 right-4 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary/15 to-blue-400/15 rounded-full blur-2xl"
-                            animate={{
-                                opacity: [0.3, 0.6, 0.3]
-                            }}
-                            transition={{
-                                duration: 8,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }}
-                        />
-                        <motion.div
-                            className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-2xl"
-                            animate={{
-                                opacity: [0.2, 0.5, 0.2]
-                            }}
-                            transition={{
-                                duration: 10,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: 2
-                            }}
-                        />
+                        {/* Background Elements */}
+                        <div className="absolute top-4 right-4 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-br from-primary/15 to-blue-400/15 rounded-full blur-2xl animate-pulse" />
+                        <div className="absolute bottom-4 left-4 w-24 h-24 sm:w-32 sm:h-32 bg-gradient-to-tr from-blue-400/15 to-primary/15 rounded-full blur-2xl animate-pulse" />
 
                         {/* Content */}
                         <div className="relative z-10">
-                            {/* Icon Row */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.6 }}
-                                className="flex justify-center items-center gap-4 sm:gap-6 mb-6 sm:mb-8"
-                            >
-                                <motion.div
-                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
-                                >
-                                    <Users className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
-                                </motion.div>
-                                <motion.div
-                                    whileHover={{ scale: 1.1, rotate: -5 }}
-                                    transition={{ duration: 0.3, delay: 0.1 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-primary rounded-2xl flex items-center justify-center shadow-lg"
-                                >
-                                    <Award className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
-                                </motion.div>
-                                <motion.div
-                                    whileHover={{ scale: 1.1, rotate: 5 }}
-                                    transition={{ duration: 0.3, delay: 0.2 }}
-                                    className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-primary to-blue-600 rounded-2xl flex items-center justify-center shadow-lg"
-                                >
-                                    <Zap className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-white" />
-                                </motion.div>
-                            </motion.div>
+                            {/* Stats Row */}
+                            <div className="flex justify-center items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
+                                <div className="text-center">
+                                    <div className="text-3xl sm:text-4xl font-bold text-primary mb-1">100+</div>
+                                    <div className="text-xs sm:text-sm text-gray-600">Klientów</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-3xl sm:text-4xl font-bold text-primary mb-1">6+</div>
+                                    <div className="text-xs sm:text-sm text-gray-600">Lat</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-3xl sm:text-4xl font-bold text-primary mb-1">100%</div>
+                                    <div className="text-xs sm:text-sm text-gray-600">Satysfakcji</div>
+                                </div>
+                            </div>
 
                             {/* Main Text */}
-                            <motion.h3
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.8 }}
-                                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6"
-                            >
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
                                 Dołącz do grona{" "}
                                 <span className="bg-gradient-to-r from-primary via-blue-600 to-blue-700 bg-clip-text text-transparent">
                                     zadowolonych klientów
                                 </span>
-                            </motion.h3>
+                            </h3>
 
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 1.0 }}
-                                className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2 sm:px-0"
-                            >
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed px-2 sm:px-0">
                                 Skontaktuj się z nami i rozpocznij współpracę, która przyniesie Ci same korzyści
-                            </motion.p>
+                            </p>
 
-                            {/* CTA Buttons */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 1.2 }}
-                                className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center"
+                            {/* CTA Button */}
+                            <button
+                                onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-300 inline-flex items-center gap-2 sm:gap-3"
                             >
-                                <motion.div
-                                    whileHover={{ scale: 1.05, y: -3 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="w-full sm:w-auto"
-                                >
-                                    <button
-                                        onClick={() => document.getElementById('kontakt')?.scrollIntoView({ behavior: 'smooth' })}
-                                        className="w-full sm:w-auto bg-gradient-to-r from-primary to-blue-600 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg shadow-xl hover:shadow-2xl transition-all duration-300 flex items-center gap-2 sm:gap-3 group"
-                                    >
-                                        Skontaktuj się
-                                        <motion.div
-                                            animate={{ x: [0, 3, 0] }}
-                                            transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
-                                        >
-                                            <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                                        </motion.div>
-                                    </button>
-                                </motion.div>
-
-                                <motion.div
-                                    whileHover={{ scale: 1.05, y: -3 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="w-full sm:w-auto"
-                                >
-                                    <button className="w-full sm:w-auto bg-white/80 backdrop-blur-sm text-gray-800 px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-base sm:text-lg border-2 border-primary/20 hover:border-primary/40 shadow-lg hover:shadow-xl transition-all duration-300">
-                                        Zobacz więcej opinii
-                                    </button>
-                                </motion.div>
-                            </motion.div>
+                                Skontaktuj się
+                                <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
+                            </button>
                         </div>
                     </div>
-                </motion.div>
+                </GSAPCard>
             </div>
         </section>
     );

@@ -65,11 +65,11 @@ export async function POST(request: NextRequest) {
         const mailOptions = {
             from: process.env.EMAIL_USER,
             to: process.env.EMAIL_USER, // Wysyłamy na nasz email
-            subject: `Nowe zapytanie - ${service} - KBS Investment`,
+            subject: `Nowe zapytanie - ${service} - KBS Investment Sp. z o.o.`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
-                        <h1 style="margin: 0; font-size: 24px;">Nowe Zapytanie - KBS Investment</h1>
+                        <h1 style="margin: 0; font-size: 24px;">Nowe Zapytanie - KBS Investment Sp. z o.o.</h1>
                     </div>
                     
                     <div style="padding: 20px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0 0 10px 10px;">
@@ -110,14 +110,14 @@ export async function POST(request: NextRequest) {
                         
                         <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
                             <p style="color: #64748b; font-size: 12px; margin: 0;">
-                                To jest automatyczna wiadomość z formularza kontaktowego strony KBS Investment
+                                To jest automatyczna wiadomość z formularza kontaktowego strony KBS Investment Sp. z o.o.
                             </p>
                         </div>
                     </div>
                 </div>
             `,
             text: `
-Nowe zapytanie - KBS Investment
+Nowe zapytanie - KBS Investment Sp. z o.o.
 
 Usługa: ${service}
 Imię i nazwisko: ${name}
@@ -138,7 +138,7 @@ Data otrzymania: ${new Date().toLocaleString('pl-PL')}
         const confirmationMailOptions = {
             from: process.env.EMAIL_USER,
             to: email,
-            subject: 'Potwierdzenie zapytania - KBS Investment',
+            subject: 'Potwierdzenie zapytania - KBS Investment Sp. z o.o.',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
                     <div style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white; padding: 20px; text-align: center; border-radius: 10px 10px 0 0;">
@@ -177,7 +177,7 @@ Data otrzymania: ${new Date().toLocaleString('pl-PL')}
                         
                         <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
                             <p style="color: #64748b; font-size: 12px; margin: 0;">
-                                KBS Investment - Profesjonalne usługi instalacyjne
+                                KBS Investment Sp. z o.o. - Profesjonalne usługi instalacyjne
                             </p>
                         </div>
                     </div>
@@ -200,7 +200,7 @@ Kontakt bezpośredni:
 - Email: kontakt@kbs-investment.pl
 - Adres: Ks. Augustyna Strzybnego 4, 41-506 Chorzów
 
-KBS Investment - Profesjonalne usługi instalacyjne
+KBS Investment Sp. z o.o. - Profesjonalne usługi instalacyjne
             `
         };
 

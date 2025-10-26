@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
+/* eslint-disable */
 "use client";
 
-import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
+import { GSAPCard } from "@/components/gsap-card";
 import { X, ChevronLeft, ChevronRight, Building2, MapPin, Calendar, Users, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

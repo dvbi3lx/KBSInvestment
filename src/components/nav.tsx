@@ -128,7 +128,7 @@ export function NavBar() {
                                     >
                                         <Link href="/" className="flex items-center">
                                             <span className="text-base sm:text-lg md:text-xl font-bold text-gray-900">
-                                                KBS Investment
+                                                KBS Investment Sp. z o.o.
                                             </span>
                                         </Link>
                                     </motion.div>
@@ -169,7 +169,7 @@ export function NavBar() {
                                                 onClick={() => scrollToSection('kontakt')}
                                                 className="h-8 sm:h-10 px-4 sm:px-6 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold shadow-lg hover:shadow-xl transition-all duration-300 group"
                                             >
-                                                Bezpłatna wycena
+                                                Wycena projektu
                                                 <motion.div
                                                     className="ml-2"
                                                     whileHover={{ x: 2, y: -2 }}
@@ -258,7 +258,7 @@ export function NavBar() {
                                 className="flex items-center justify-between p-3 sm:p-4 md:p-6"
                             >
                                 <span className="text-base sm:text-lg md:text-xl font-bold text-gray-900 drop-shadow-md">
-                                    KBS Investment
+                                    KBS Investment Sp. z o.o.
                                 </span>
                                 <motion.button
                                     whileHover={{ scale: 1.1, rotate: 90 }}
@@ -320,7 +320,7 @@ export function NavBar() {
                                     }}
                                     className="w-full h-10 sm:h-12 md:h-14 bg-gradient-to-r from-primary to-blue-600 text-white hover:from-primary/90 hover:to-blue-600/90 rounded-lg sm:rounded-xl md:rounded-2xl text-sm sm:text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
                                 >
-                                    Bezpłatna wycena
+                                    Wycena projektu
                                     <ArrowUpRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                                 </Button>
 

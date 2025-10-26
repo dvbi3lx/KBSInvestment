@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Regulamin - KBS Investment",
-    description: "Regulamin strony internetowej KBS Investment. Zasady korzystania z serwisu i warunki świadczenia usług instalacyjnych.",
+    title: "Regulamin - KBS Investment Sp. z o.o.",
+    description: "Regulamin strony internetowej KBS Investment Sp. z o.o. Zasady korzystania z serwisu i warunki świadczenia usług instalacyjnych.",
     keywords: "regulamin, zasady, warunki, usługi, KBS Investment",
 };
 
@@ -53,7 +53,7 @@ export default function Regulamin() {
                         </div>
                         <div className="prose prose-gray max-w-none">
                             <p className="text-gray-700 leading-relaxed mb-3 sm:mb-4 text-sm sm:text-base">
-                                Niniejszy regulamin określa zasady korzystania ze strony internetowej KBS Investment
+                                Niniejszy regulamin określa zasady korzystania ze strony internetowej KBS Investment Sp. z o.o.
                                 oraz warunki świadczenia usług instalacyjnych przez naszą firmę.
                             </p>
                             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 sm:p-6">
@@ -76,7 +76,7 @@ export default function Regulamin() {
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <Phone className="h-4 w-4 text-blue-600 flex-shrink-0" />
-                                            <span className="text-blue-800 text-sm sm:text-base">+48 570-751-670</span>
+                                            <span className="text-blue-800 text-sm sm:text-base">+48 570-751-670, +48 516-437-707</span>
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +113,7 @@ export default function Regulamin() {
                                 <div className="bg-green-50 border border-green-200 rounded-xl p-4">
                                     <h3 className="font-semibold text-green-900 mb-2 text-sm sm:text-base">Usługi</h3>
                                     <p className="text-green-800 text-sm">
-                                        Usługi instalacyjne świadczone przez KBS Investment
+                                        Usługi instalacyjne świadczone przez KBS Investment Sp. z o.o.
                                     </p>
                                 </div>
                                 <div className="bg-green-50 border border-green-200 rounded-xl p-4">
@@ -289,7 +289,7 @@ export default function Regulamin() {
                                     </div>
                                     <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Wycena</h3>
                                     <p className="text-gray-600 text-xs sm:text-sm">
-                                        Bezpłatna wycena na miejscu
+                                        Wycena po przeanalizowaniu projektu
                                     </p>
                                 </div>
                                 <div className="text-center">
@@ -314,9 +314,9 @@ export default function Regulamin() {
                                     <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-red-100 text-red-600 mx-auto mb-3 text-sm sm:text-base">
                                         <span className="font-bold text-lg">5</span>
                                     </div>
-                                    <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Odbior</h3>
+                                    <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Odbiór</h3>
                                     <p className="text-gray-600 text-xs sm:text-sm">
-                                        Odbior techniczny i rozliczenie
+                                        Odbiór techniczny i rozliczenie
                                     </p>
                                 </div>
                             </div>
@@ -338,8 +338,8 @@ export default function Regulamin() {
                                 <h3 className="font-semibold text-yellow-900 mb-3 text-sm sm:text-base">Gwarancje:</h3>
                                 <ul className="space-y-2 text-yellow-800 text-sm">
                                     <li>• Gwarancja na materiały i wykonanie</li>
-                                    <li>• Termin gwarancyjny: 24 miesiące</li>
-                                    <li>• Gwarancja zgodna z przepisami prawa</li>
+                                    <li>• Termin gwarancyjny: 24-60 miesięcy</li>
+                                    <li>• Gwarancja zgodna z przepisami prawa oraz sztuki budowlanej</li>
                                     <li>• Dokumentacja gwarancyjna</li>
                                 </ul>
                             </div>
@@ -370,7 +370,7 @@ export default function Regulamin() {
                                 <h3 className="font-semibold text-gray-900 mb-2 text-sm sm:text-base">Odpowiedzialność firmy:</h3>
                                 <p className="text-gray-700 text-sm">
                                     Firma odpowiada za jakość świadczonych usług, terminowość wykonania oraz
-                                    zgodność z umową i przepisami prawa.
+                                    zgodność z umową i przepisami prawa oraz sztuki budowlanej.
                                 </p>
                             </div>
                             <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
@@ -437,11 +437,11 @@ export default function Regulamin() {
                                     <div className="space-y-2">
                                         <div className="flex items-center space-x-2">
                                             <Mail className="h-4 w-4 text-primary" />
-                                            <span className="text-gray-700 text-sm">kontakt@kbs-investment.pl</span>
+                                            <span className="text-gray-700 text-sm">kbsinvestment@interia.pl</span>
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <Phone className="h-4 w-4 text-primary" />
-                                            <span className="text-gray-700 text-sm">+48 570-751-670</span>
+                                            <span className="text-gray-700 text-sm">+48 570-751-670, +48 516-437-707</span>
                                         </div>
                                         <div className="flex items-center space-x-2">
                                             <MapPin className="h-4 w-4 text-primary" />
@@ -453,7 +453,7 @@ export default function Regulamin() {
                                     <h3 className="font-semibold text-gray-900 mb-3 text-sm sm:text-base">Godziny pracy:</h3>
                                     <ul className="space-y-2 text-gray-700 text-sm">
                                         <li>• Poniedziałek - Piątek: 8:00 - 16:00</li>
-                                        <li>• Sobota: 9:00 - 13:00 (tylko pilne sprawy)</li>
+                                        <li>• Sobota: 8:00 - 13:00</li>
                                         <li>• Niedziela: nieczynne</li>
                                     </ul>
                                 </div>

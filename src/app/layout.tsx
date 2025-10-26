@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { NavBar } from "@/components/nav";
+import { NavBar } from "@/components/nav-simple";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { Background } from "@/components/background";
 
@@ -17,12 +17,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://kbsinvestment.pl'),
-  title: "KBS Investment - Profesjonalne usługi instalacyjne",
-  description: "KBS Investment oferuje kompleksowe rozwiązania w zakresie usług instalacyjnych - od projektowania po realizację, z gwarancją jakości i terminowości.",
+  title: "KBS Investment Sp. z o.o. - Profesjonalne usługi instalacyjne",
+  description: "KBS Investment Sp. z o.o. oferuje kompleksowe rozwiązania w zakresie usług instalacyjnych - od projektowania po realizację, z gwarancją jakości i terminowości.",
   keywords: "instalacje, instalacje gazowe, instalacje grzewcze, instalacje elektryczne, KBS Investment",
-  authors: [{ name: "KBS Investment" }],
-  creator: "KBS Investment",
-  publisher: "KBS Investment",
+  authors: [{ name: "KBS Investment Sp. z o.o." }],
+  creator: "KBS Investment Sp. z o.o.",
+  publisher: "KBS Investment Sp. z o.o.",
   formatDetection: {
     email: false,
     address: false,
@@ -43,22 +43,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pl_PL',
     url: 'https://kbsinvestment.pl',
-    title: 'KBS Investment - Profesjonalne usługi instalacyjne',
-    description: 'KBS Investment oferuje kompleksowe rozwiązania w zakresie usług instalacyjnych.',
-    siteName: 'KBS Investment',
+    title: 'KBS Investment Sp. z o.o. - Profesjonalne usługi instalacyjne',
+    description: 'KBS Investment Sp. z o.o. oferuje kompleksowe rozwiązania w zakresie usług instalacyjnych.',
+    siteName: 'KBS Investment Sp. z o.o.',
     images: [
       {
         url: '/logo.png',
         width: 1200,
         height: 630,
-        alt: 'KBS Investment Logo',
+        alt: 'KBS Investment Sp. z o.o. Logo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KBS Investment - Profesjonalne usługi instalacyjne',
-    description: 'KBS Investment oferuje kompleksowe rozwiązania w zakresie usług instalacyjnych.',
+    title: 'KBS Investment Sp. z o.o. - Profesjonalne usługi instalacyjne',
+    description: 'KBS Investment Sp. z o.o. oferuje kompleksowe rozwiązania w zakresie usług instalacyjnych.',
     images: ['/logo.png'],
   },
   verification: {
@@ -102,7 +102,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="KBS Investment" />
+        <meta name="apple-mobile-web-app-title" content="KBS Investment Sp. z o.o." />
       </head>
       <body className="antialiased">
         <NavBar />
