@@ -69,16 +69,17 @@ export function ContactSection() {
         setSubmitStatus('submitting');
 
         try {
-            // Przygotowanie danych
-            const formData = {
-                'form-name': 'contact',
-                'name': `${data.firstName} ${data.lastName}`,
-                'email': data.email,
-                'phone': data.phone || '',
-                'service': data.service,
-                'message': data.message,
-                'consent': data.consent ? 'true' : 'false'
-            };
+                // Przygotowanie danych
+                const formData = {
+                    'form-name': 'contact',
+                    'name': `${data.firstName} ${data.lastName}`,
+                    'email': data.email,
+                    'phone': data.phone || '',
+                    'service': data.service,
+                    'message': data.message,
+                    'consent': data.consent ? 'true' : 'false',
+                    'bot-field': '' // Honeypot field
+                };
 
             console.log('Sending data:', formData);
 
@@ -170,7 +171,9 @@ export function ContactSection() {
                             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
                                 {/* Ukryte pole honeypot dla Netlify */}
                                 <div style={{ display: 'none' }}>
-                                    <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
+                                    <label>
+                                        Don't fill this out if you're human: <input name="bot-field" />
+                                    </label>
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
