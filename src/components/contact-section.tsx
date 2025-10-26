@@ -75,24 +75,22 @@ export function ContactSection() {
         setSubmitStatus('submitting');
 
         try {
-            // Przygotowanie danych dla Netlify Functions
-            const formData = new FormData();
-            formData.append('name', `${data.firstName} ${data.lastName}`);
-            formData.append('email', data.email);
-            formData.append('phone', data.phone || '');
-            formData.append('service', data.service);
-            formData.append('message', data.message);
-
-            // Wysyłanie przez Netlify Functions
-            const response = await fetch('/netlify/functions/contact', {
+            // Wysyłanie przez Netlify Forms
+            const response = await fetch('/', {
                 method: 'POST',
-                body: formData
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams({
+                    'form-name': 'contact',
+                    'name': `${data.firstName} ${data.lastName}`,
+                    'email': data.email,
+                    'phone': data.phone || '',
+                    'service': data.service,
+                    'message': data.message
+                })
             });
 
-            const result = await response.json();
-
             if (!response.ok) {
-                throw new Error(result.error || 'Błąd wysyłania wiadomości');
+                throw new Error('Błąd wysyłania wiadomości');
             }
 
             setSubmitStatus('success');
@@ -169,7 +167,11 @@ export function ContactSection() {
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" name="contact" data-netlify="true" data-netlify-honeypot="bot-field">
+                                {/* Ukryte pole honeypot dla Netlify */}
+                                <div style={{ display: 'none' }}>
+                                    <label>Nie wypełniaj tego pola: <input name="bot-field" /></label>
+                                </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
                                         <Label htmlFor="firstName" className="text-gray-700 font-medium text-sm sm:text-base">
