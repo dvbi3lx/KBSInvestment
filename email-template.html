@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szablon Email - KBS Investment</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            padding: 30px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px 20px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid #2563eb;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .info-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #374151;
+            min-width: 80px;
+            margin-right: 10px;
+        }
+        
+        .info-value {
+            color: #6b7280;
+            flex: 1;
+        }
+        
+        .message-box {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .message-label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+        
+        .message-content {
+            color: #6b7280;
+            white-space: pre-wrap;
+        }
+        
+        .footer {
+            background-color: #f8fafc;
+            padding: 30px 20px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .company-info {
+            margin-bottom: 20px;
+        }
+        
+        .company-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+        
+        .contact-details {
+            font-size: 14px;
+            color: #6b7280;
+            line-height: 1.8;
+        }
+        
+        .contact-item {
+            margin-bottom: 5px;
+        }
+        
+        .highlight {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #e5e7eb;
+            margin: 20px 0;
+        }
+        
+        .note {
+            background-color: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #92400e;
+        }
+        
+        .note-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">KBS Investment</div>
+            <div class="tagline">Kompleksowe usługi instalacyjne</div>
+        </div>
+        
+        <!-- Content -->
+        <div class="content">
+            <div class="greeting">
+                Nowe zapytanie z formularza kontaktowego
+            </div>
+            
+            <div class="info-box">
+                <div class="info-title">📋 Dane klienta</div>
+                
+                <div class="info-item">
+                    <div class="info-label">Imię:</div>
+                    <div class="info-value">{{from_name}}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Email:</div>
+                    <div class="info-value">{{from_email}}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Telefon:</div>
+                    <div class="info-value">{{phone}}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Usługa:</div>
+                    <div class="info-value">{{service}}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Zgoda:</div>
+                    <div class="info-value">{{consent}}</div>
+                </div>
+            </div>
+            
+            <div class="message-box">
+                <div class="message-label">💬 Wiadomość od klienta:</div>
+                <div class="message-content">{{message}}</div>
+            </div>
+            
+            <div class="note">
+                <div class="note-title">💡 Ważne:</div>
+                Możesz odpowiedzieć bezpośrednio na ten email - zostanie wysłany do klienta ({{from_email}}).
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="company-info">
+                <div class="company-name">KBS Investment Sp. z o.o.</div>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <span class="highlight">📍</span> ul. Ks. Augustyna Strzybnego 4, 41-506 Chorzów
+                    </div>
+                    <div class="contact-item">
+                        <span class="highlight">📞</span> +48 570-751-670, +48 516-437-707
+                    </div>
+                    <div class="contact-item">
+                        <span class="highlight">✉️</span> dominik.dubiel@poczta.fm
+                    </div>
+                    <div class="contact-item">
+                        <span class="highlight">🕒</span> Pon-Pt: 8:00-16:00, Sob: 8:00-13:00
+                    </div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <div style="font-size: 12px; color: #9ca3af;">
+                Ten email został wygenerowany automatycznie z formularza kontaktowego na stronie internetowej KBS Investment.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

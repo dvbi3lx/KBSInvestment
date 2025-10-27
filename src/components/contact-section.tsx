@@ -76,11 +76,27 @@ export function ContactSection() {
             const publicKey = 'MrALkpOzd6kMF0l3c';
 
             // Przygotowanie danych dla EmailJS
+            const getServiceName = (serviceValue: string) => {
+                const serviceNames: { [key: string]: string } = {
+                    'gas': 'Instalacje gazowe',
+                    'heating': 'Instalacje grzewcze',
+                    'water': 'Woda i kanalizacja',
+                    'electrical': 'Instalacje elektryczne',
+                    'ventilation': 'Wentylacja i klimatyzacja',
+                    'maintenance': 'Konserwacja i serwis',
+                    'inventory': 'Inwentaryzacja',
+                    'welding': 'Spawanie i montaż',
+                    'supervision': 'Eksploatacja i nadzór',
+                    'other': 'Inne'
+                };
+                return serviceNames[serviceValue] || serviceValue;
+            };
+
             const templateParams = {
                 from_name: `${data.firstName} ${data.lastName}`,
                 from_email: data.email,
                 phone: data.phone,
-                service: data.service,
+                service: getServiceName(data.service),
                 message: data.message,
                 consent: data.consent ? 'Tak' : 'Nie',
                 reply_to: data.email
