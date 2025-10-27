@@ -20,11 +20,6 @@
 [build.processing.html]
   pretty_urls = true
 
-# Forms detection
-[forms]
-  [forms.contact]
-    name = "contact"
-
 # Redirects
 [[redirects]]
   from = "/contact-static"

@@ -10,6 +10,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 import {
     Phone,
     Mail,
@@ -28,7 +29,7 @@ const contactFormSchema = z.object({
     firstName: z.string().min(1, "Imię jest wymagane"),
     lastName: z.string().min(1, "Nazwisko jest wymagane"),
     email: z.string().email("Podaj poprawny adres email"),
-    phone: z.string().optional(),
+    phone: z.string().min(1, "Telefon jest wymagany"),
     service: z.string().min(1, "Wybierz rodzaj usługi"),
     message: z.string().min(1, "Wiadomość jest wymagana"),
     consent: z.boolean().refine((val) => val === true, {
@@ -69,33 +70,29 @@ export function ContactSection() {
         setSubmitStatus('submitting');
 
         try {
-            // Przygotowanie danych dla Netlify Forms
-            const formData = {
-                'form-name': 'contact',
-                'name': `${data.firstName} ${data.lastName}`,
-                'email': data.email,
-                'phone': data.phone || '',
-                'service': data.service,
-                'message': data.message,
-                'consent': data.consent ? 'true' : 'false',
-                'bot-field': '' // Honeypot field
+            // Konfiguracja EmailJS
+            const serviceId = 'service_gkdgdxr'; // Zastąp swoim Service ID
+            const templateId = 'template_ah5nl3e'; // Zastąp swoim Template ID
+            const publicKey = 'MrALkpOzd6kMF0l3c'; // Zastąp swoim Public Key
+
+            // Przygotowanie danych dla EmailJS
+            const templateParams = {
+                from_name: `${data.firstName} ${data.lastName}`,
+                from_email: data.email,
+                phone: data.phone,
+                service: data.service,
+                message: data.message,
+                to_email: 'dominik.dubiel@poczta.fm', // Twój email
+                consent: data.consent ? 'Tak' : 'Nie'
             };
 
-            console.log('Sending data:', formData);
+            console.log('Sending email via EmailJS:', templateParams);
 
-            // Wysyłanie przez Netlify Forms
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(formData)
-            });
+            // Wysyłanie przez EmailJS
+            await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
-            console.log('Response status:', response.status);
-
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-            }
-
+            console.log('Email sent successfully!');
+            
             setSubmitStatus('success');
             reset();
 
@@ -103,7 +100,7 @@ export function ContactSection() {
             setTimeout(() => setSubmitStatus('idle'), 5000);
 
         } catch (error) {
-            console.error('Error submitting form:', error);
+            console.error('Error sending email:', error);
             setSubmitStatus('error');
 
             // Reset statusu po 5 sekundach
@@ -168,9 +165,7 @@ export function ContactSection() {
                                 </div>
                             )}
 
-                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6" name="contact" data-netlify="true" data-netlify-honeypot="bot-field" action="/thank-you">
-                                {/* Ukryte pole honeypot dla Netlify */}
-                                <input type="hidden" name="bot-field" />
+                            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 sm:space-y-6">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                                     <div>
                                         <Label htmlFor="firstName" className="text-gray-700 font-medium text-sm sm:text-base">
@@ -233,7 +228,7 @@ export function ContactSection() {
 
                                 <div>
                                     <Label htmlFor="phone" className="text-gray-700 font-medium text-sm sm:text-base">
-                                        Telefon
+                                        Telefon *
                                     </Label>
                                     <Input
                                         id="phone"
