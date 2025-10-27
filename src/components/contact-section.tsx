@@ -71,9 +71,9 @@ export function ContactSection() {
 
         try {
             // Konfiguracja EmailJS
-            const serviceId = 'service_gkdgdxr'; // Zastąp swoim Service ID
-            const templateId = 'template_ah5nl3e'; // Zastąp swoim Template ID
-            const publicKey = 'MrALkpOzd6kMF0l3c'; // Zastąp swoim Public Key
+            const serviceId = 'service_gkdgdxr';
+            const templateId = 'template_j630rqd'; // Template dla firmy
+            const publicKey = 'MrALkpOzd6kMF0l3c';
 
             // Przygotowanie danych dla EmailJS
             const templateParams = {
@@ -82,17 +82,15 @@ export function ContactSection() {
                 phone: data.phone,
                 service: data.service,
                 message: data.message,
-                to_email: 'dominik.dubiel@poczta.fm', // Twój email
                 consent: data.consent ? 'Tak' : 'Nie',
-                reply_to: data.email // Dodajemy reply_to
+                reply_to: data.email
             };
 
             console.log('Sending email via EmailJS:', templateParams);
 
-            // Wysyłanie przez EmailJS
+            // Wysyłanie maila tylko do firmy
             await emailjs.send(serviceId, templateId, templateParams, publicKey);
-
-            console.log('Email sent successfully!');
+            console.log('Email to firm sent successfully!');
             
             setSubmitStatus('success');
             reset();
