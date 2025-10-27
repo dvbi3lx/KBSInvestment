@@ -83,7 +83,8 @@ export function ContactSection() {
                 service: data.service,
                 message: data.message,
                 to_email: 'dominik.dubiel@poczta.fm', // Twój email
-                consent: data.consent ? 'Tak' : 'Nie'
+                consent: data.consent ? 'Tak' : 'Nie',
+                reply_to: data.email // Dodajemy reply_to
             };
 
             console.log('Sending email via EmailJS:', templateParams);
