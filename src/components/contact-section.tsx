@@ -130,7 +130,7 @@ export function ContactSection() {
             <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
                 {/* Header */}
                 <GSAPCard className="text-center mb-12 sm:mb-16">
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-1">
                         Skontaktuj się z <span className="text-primary">nami</span>
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto px-2 sm:px-0">
@@ -374,7 +374,7 @@ export function ContactSection() {
                                         </div>
                                         <div>
                                             <p className="font-medium text-gray-900 text-sm sm:text-base">+48 570-751-670, +48 516-437-707</p>
-                                            <p className="text-xs sm:text-sm text-gray-600">Pon-Pt: 8:00-18:00</p>
+                                            <p className="text-xs sm:text-sm text-gray-600">Pon-Pt: 8:00-16:00, Sob: 8:00-13:00</p>
                                         </div>
                                     </div>
 

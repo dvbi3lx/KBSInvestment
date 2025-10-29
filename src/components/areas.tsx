@@ -10,7 +10,7 @@ export function ServiceAreas() {
     return (
         <section className="container mx-auto px-4 py-20">
             <div className="mx-auto max-w-5xl">
-                <h2 className="text-3xl font-bold md:text-4xl">Obszar działania</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-1 text-center">Obszar działania</h2>
                 <p className="mt-2 text-muted-foreground">
                     Obsługujemy wspólnoty mieszkaniowe, deweloperów i klientów indywidualnych.
                 </p>
