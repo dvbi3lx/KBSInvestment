@@ -209,6 +209,9 @@ export function Hero() {
                                         <div className="font-semibold text-gray-900 mb-1">
                                             Krystian Szymborski
                                         </div>
+                                        <div className="text-sm text-gray-600 mb-1">
+                                            Prezes zarządu
+                                        </div>
                                         <div className="text-primary font-medium">
                                             +48 570-751-670
                                         </div>
@@ -225,6 +228,9 @@ export function Hero() {
                                     <div>
                                         <div className="font-semibold text-gray-900 mb-1">
                                             Iwona Janda
+                                        </div>
+                                        <div className="text-sm text-gray-600 mb-1">
+                                            Prokurent
                                         </div>
                                         <div className="text-primary font-medium">
                                             +48 516-437-707
